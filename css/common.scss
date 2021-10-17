@@ -1,0 +1,69 @@
+$f-25: 1.6rem;
+$f-30:1.8rem;
+$f-22:1.4rem;
+$f-18:1.1rem;
+$orange: #f96400;
+$yellow: #f1ca0b;
+
+html{
+    font-size:16px;
+}
+*{
+    font-family:roboto, arial;
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+    background-image: linear-gradient(#000614, #011936);
+    height:100vh;
+}
+
+.header{
+    width:100%;
+    background-color:black;
+    height:70px;
+    display:flex;
+    align-items: center;
+    padding:0 20px;
+    .headerContent{
+        width:1350px;
+        display:flex;
+        margin:auto;
+        justify-content: space-between;
+    }
+    .logo{
+        color:white;
+        font-size:$f-22;
+        font-weight:bold;
+        width:30%;
+        padding-top:20px;
+    }
+    .menuBtn{
+        font-size:$f-18;
+        text-decoration: none;
+        color:white;
+        font: weight 400px;;
+        height:70px;
+        display:inline-block;
+        padding-top:25px;
+        font-weight: 400;
+    }
+    .menuPart{
+        display:flex;
+        justify-content: space-between;
+        width:45%;
+        max-width:550px;
+    }
+    .searchBox{
+        background-color:white;
+        width: 200px;
+        border:none;
+        border-radius: 50px;
+        padding-left:10px;
+        height:30px;
+        outline:none;
+    }
+    .searchBoxContainer{
+        padding-top:19px;
+    }
+}
