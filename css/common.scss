@@ -5,6 +5,10 @@ $f-18:1.1rem;
 $orange: #f96400;
 $yellow: #f1ca0b;
 
+h1,h2,h3{
+    margin-bottom:0;
+}
+
 html{
     font-size:16px;
 }
@@ -26,7 +30,8 @@ body{
     align-items: center;
     padding:0 20px;
     .headerContent{
-        width:1350px;
+        width:100%;
+        max-width:1350px;
         display:flex;
         margin:auto;
         justify-content: space-between;
@@ -47,6 +52,23 @@ body{
         display:inline-block;
         padding-top:25px;
         font-weight: 400;
+        transition:letter-spacing .2s;
+        position:relative;
+        &:hover{
+            letter-spacing: 1px;
+        }
+        &:before{
+            position:absolute;
+            bottom:0;
+            width:0;
+            height:3px;
+            background-color:$yellow;
+            transition: .2s;
+            content:'';
+        }
+        &:hover:before{
+            width:100%;
+        }
     }
     .menuPart{
         display:flex;
@@ -65,5 +87,35 @@ body{
     }
     .searchBoxContainer{
         padding-top:19px;
+        position:relative;
     }
+    .i-search{
+        width:30px;
+        height:30px;
+        color:black;
+        position:absolute;
+        top:23px;
+        right:0;
+    }
+}
+
+.mainSection{
+    width:100%;
+    height: calc(100vh - 70px);
+}
+.orangeBtn,.grayBtn{
+    background-color:$orange;
+    color:white;
+    text-decoration: none;
+    font-size:16px;
+    padding:10px 20px;
+    cursor:pointer;
+    .material-icons{
+        font-size:18px;
+        margin-right:10px;
+        transform:translateY(3px)
+    }
+}
+.grayBtn{
+    background-color:#636363;
 }
