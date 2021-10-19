@@ -1,12 +1,16 @@
-$f-25: 1.6rem;
-$f-30:1.8rem;
-$f-22:1.4rem;
+$f-25: 1.4rem;
+$f-30:1.5rem;
+$f-22:1.3rem;
 $f-18:1.1rem;
 $orange: #f96400;
 $yellow: #f1ca0b;
 
+.t-white{
+    color:white;
+}
+
 h1,h2,h3{
-    margin-bottom:0;
+    // margin-bottom:0;
 }
 
 html{
@@ -118,4 +122,28 @@ body{
 }
 .grayBtn{
     background-color:#636363;
+}
+section{
+    padding-bottom:50px;
+    width:100%;
+    max-width:1350px;
+    margin:auto;
+    padding: 0 20px 100px 20px;
+    h1{
+        color:white;
+    }
+}
+h1{
+    font-size:$f-30;
+    position:relative;
+    // margin-left:3px;
+    &:before{
+        content:'';
+        width:5px;
+        height:70%;
+        background-color:$yellow;
+        position:absolute;
+        top:5px;
+        left:-13px;
+    }
 }

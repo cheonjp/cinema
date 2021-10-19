@@ -1,5 +1,5 @@
-$f-25: 1.6rem;
-$f-30:1.8rem;
+$f-25: 1.4rem;
+$f-30:1.5rem;
 $f-22:1.3rem;
 $f-18:1.1rem;
 $orange: #f96400;
@@ -9,11 +9,12 @@ $yellow: #f1ca0b;
 .heroPageSection{
     width:100%;
     height:100%;
+    min-height:500px;
     position:relative;
+    margin-bottom:100px;
     .heroItem{
         width:100%;
         height:100%;
-        
         background-repeat: no-repeat;
         background-size:cover;
         background-position: center bottom;
@@ -64,6 +65,58 @@ $yellow: #f1ca0b;
     }
     .nextBtn{
         right:50px;
+    }
+}
+
+.rewardingSection{
+    .awardBox{
+        width:100%;
+        display:flex;
+        flex-wrap: wrap;
+        margin-top:40px;
+        .awardBoxItem{
+            width:24%;
+            margin-right:1%;
+            margin-bottom:1%;
+            min-width:300px;
+            height:230px;
+            background-color:gray;
+            position:relative;
+            background-repeat: no-repeat;
+            background-size:cover;
+            padding:15px;
+            box-shadow: 0px 0px 60px rgba(135, 135, 255, 0.3);
+        }
+        .awardBoxItem.item1{
+            background-image:url(/img/award_1.jpg);
+        }
+        .awardBoxItem.item2{
+            background-image:url(/img/award_2.jpg);
+        }
+        .awardBoxItem.item3{
+            background-image:url(/img/award_3.jpg);
+        }
+        .awardBoxItem.item4{
+            background-image:url(/img/award_4.jpg);
+        }
+        .i-award{
+            font-size:50px;
+            color:$orange;
+            position:absolute;
+            left:-5px;
+            top:-25px;
+            width:40px;
+            height:40px;
+        }
+        .awardTitle{
+            color:white;
+            font-size:$f-18;
+            font-weight: 500;
+            position:relative;
+            border-bottom: 1px solid $yellow;
+            padding-bottom:5px;
+            display:inline-block;
+        }
     }
 }
 
