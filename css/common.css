@@ -18,7 +18,6 @@ body {
   background-image: -webkit-linear-gradient(#000614, #011936);
   background-image: -o-linear-gradient(#000614, #011936);
   background-image: linear-gradient(#000614, #011936);
-  height: 100vh;
 }
 
 .header {
@@ -126,7 +125,6 @@ body {
 
 .mainSection {
   width: 100%;
-  height: calc(100vh - 70px);
 }
 
 .orangeBtn, .grayBtn {
@@ -156,6 +154,7 @@ section {
   max-width: 1350px;
   margin: auto;
   padding: 0 20px 100px 20px;
+  margin-bottom: 100px;
 }
 
 section h1 {
@@ -175,4 +174,8 @@ h1:before {
   position: absolute;
   top: 5px;
   left: -13px;
+}
+
+.Calibri {
+  font-family: 'calibri', Arial;
 }

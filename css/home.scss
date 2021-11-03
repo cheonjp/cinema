@@ -8,7 +8,7 @@ $yellow: #f1ca0b;
 
 .heroPageSection{
     width:100%;
-    height:100%;
+    height:calc(100vh - 70px);
     min-height:500px;
     position:relative;
     margin-bottom:100px;
@@ -69,6 +69,7 @@ $yellow: #f1ca0b;
 }
 
 .rewardingSection{
+    border-bottom:1px solid white;
     .awardBox{
         width:100%;
         display:flex;
@@ -117,8 +118,135 @@ $yellow: #f1ca0b;
             padding-bottom:5px;
             display:inline-block;
         }
+        .awardText{
+            color:white;
+            margin-top:0;
+            height:100px;
+        }
+        .i-star{
+            color:$yellow;
+            font-size:25px;
+            
+        }
+        .iconBox{
+            display:flex;
+            width:70%;
+            margin:auto;
+            justify-content: space-between;
+        }
+
+    }
+    .quoteText{
+        font-size:2.2rem;
+        color:white;
+        margin-top:30px;
+        text-align: center;
+        margin-bottom:30px;
+        span{
+            color:$yellow;
+        }
+    }
+    .quoteText+div{
+        color:$yellow;
+        font-size:$f-25;
+        text-align: center;
+    }
+    
+}
+.introBox{
+    width:100%;
+    border: 1px solid $yellow;
+    border-top: none !important;
+    box-shadow: 2px 2px 3px $yellow;
+    padding: 20px;
+    color:white;
+    position: relative;
+    margin-top:70px;
+    &:before{
+        position: absolute;
+        width:10px;
+        height:1px;
+        content:'';
+        top:0;
+        left:0;
+        background:$yellow;  
+    }
+    &:after{
+        position: absolute;
+        width:80%;
+        height:1px;
+        content:'';
+        top:0;
+        right:0;
+        background:$yellow;  
+    }
+    h2{
+        position: absolute;
+        background:$yellow;
+        display:inline-block;
+        padding: 15px 30px;
+        font-size: $f-22;
+        top:-45px;
+        left:25px;
+        
+    }
+    .introBoxContainer{
+        padding-top:30px;
+        display:flex;
+        .imgBox{
+            width:60%;
+            display:flex;
+        }
+        .mainImg{
+            width:70%;
+        }
+        .subImgBox{
+            width:25%;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left:20px;
+            .subImg{
+                border: 1px solid white;
+                width:100%;
+                height:30%;
+            }
+        }
+        .IntroBoxTextBox{
+            width:40%;
+            line-height: 30px;
+            font-size:1.1rem;
+        }
+    }
+    .decorationBox{
+        position:absolute;
+        right:-40px;
+        top:15px;
+        .decorationDot{
+            display:inline-block;
+            background-color:$orange;
+            width:13px;
+            height:13px;
+            margin-left:20px;
+            &:nth-child(1){
+                opacity:.5;
+            }
+            &:nth-child(2){
+                opacity:.4;
+            }
+            &:nth-child(3){
+                opacity:.3;
+            }
+            &:nth-child(4){
+                opacity:.2;
+            }
+            &:nth-child(5){
+                opacity:.1;
+            }
+        }
     }
 }
+
 
 
 
