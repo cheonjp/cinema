@@ -234,10 +234,25 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+}
+
+.introBox .introBoxContainer .imgBox .imgText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 1.2rem;
+  border: solid white;
+  border-width: 0 2px 2px 2px;
 }
 
 .introBox .introBoxContainer .mainImg {
   width: 70%;
+  border: 2px solid white;
 }
 
 .introBox .introBoxContainer .subImgBox {
@@ -256,7 +271,7 @@
 }
 
 .introBox .introBoxContainer .subImgBox .subImg {
-  border: 1px solid white;
+  border: 2px solid white;
   width: 100%;
   height: 30%;
 }

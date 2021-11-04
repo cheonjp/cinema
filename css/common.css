@@ -179,3 +179,76 @@ h1:before {
 .Calibri {
   font-family: 'calibri', Arial;
 }
+
+.footer {
+  color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#232323), to(#000));
+  background-image: -webkit-linear-gradient(top, #232323, #000);
+  background-image: -o-linear-gradient(top, #232323, #000);
+  background-image: linear-gradient(to bottom, #232323, #000);
+  height: 303px;
+}
+
+.footer .footerContainer {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.footer .footerLogo {
+  font-size: 44px;
+  font-weight: bold;
+  margin: 20px 0 30px 0;
+}
+
+.footer .footerMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 600px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto;
+}
+
+.footer .menu {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.i-social {
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  position: relative;
+}
+
+.i-social:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), black);
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0), black);
+  background-image: linear-gradient(rgba(0, 0, 0, 0), black);
+}
+
+.social_1 {
+  background-image: url(/img/icon_facebook.svg);
+}
+
+.social_2 {
+  background-image: url(/img/icon_instagram.svg);
+}
+
+.social_3 {
+  background-image: url(/img/icon_twitter.svg);
+}
