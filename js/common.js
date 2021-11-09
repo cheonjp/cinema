@@ -101,7 +101,18 @@ const shadowDOM_css = `
     padding-top: 19px;
     position: relative;
   }
-  
+  .searchBoxContainer .alertBox{
+      position:absolute;
+      background:red;
+      color:white;
+      border-radius:50px;
+      top:19px;
+      left:0px;
+      height:30px;
+  }
+  .alertText{
+      padding:5px 10px;
+  }
   .header .i-search {
       cursor:pointer;
     width: 30px;
@@ -190,6 +201,8 @@ const shadowDOM_css = `
 	height: 70px;
 	z-index: 1;
     }
+
+    
    
 </style>
 `
@@ -229,11 +242,33 @@ class Header extends HTMLElement{
         searchBar.addEventListener('click', searchAction)
 
         function searchAction(e){
+            let targetText = ''
             if(e.target === searchIcon){
                 if(searchBox.value === ''){
-                    
+                    targetText = 'At least 1 letter'
+                    alertMessage(targetText,true)
+                }else{
+                    targetText = 'Can not find one'
+                    alertMessage(targetText,true)
                 }
             }
+        }
+        function alertMessage(targetText, trigger){
+            const newElement = document.createElement('div')
+            let actionTrigger = trigger
+            actionTrigger = false
+            newElement.innerHTML = `           
+                <div class="alertText">${targetText}</div>
+            `
+            newElement.classList.add('alertBox')
+            searchBar.appendChild(newElement)
+            actionTrigger = trigger
+           if(actionTrigger === true){
+               setTimeout(()=>{
+                searchBar.removeChild(newElement)
+                searchBox.value=''
+               },3000)
+           }
         }
     }
 }
