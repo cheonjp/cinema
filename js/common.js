@@ -20,6 +20,43 @@ const shadowDOM_css = `
             align-items: center;
     padding: 0 20px;
   }
+  .activeHeader{
+    animation-name:headerAni;
+    animation-duration:.5s;
+    animation-fill-mode: forwards;
+  }
+  .inactiveHeader{
+    animation-name:returnHeaderAni;
+    animation-duration:.5s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes headerAni {
+    0%{
+      top:0;
+    }
+    50%{
+      top:-70px;
+      background-color:rgba(0,0,0,0.9);
+    }
+    100%{
+      top:0;
+      background-color:rgba(20,20,20,0.9);
+    }
+  }
+  @keyframes returnHeaderAni {
+    0%{
+      top:0;
+    }
+    50%{
+      top:-70px;
+      background-color:rgba(0,0,0,0.9);
+    }
+    100%{
+      top:0;
+      background-color:rgba(0,0,0);
+    }
+  }
+
   
   .header .headerContent {
     width: 100%;
@@ -56,9 +93,7 @@ const shadowDOM_css = `
     position: relative;
   }
   
-  .header .menuBtn:hover {
-    letter-spacing: 1px;
-  }
+
   
   .header .menuBtn:before {
     position: absolute;
@@ -103,16 +138,18 @@ const shadowDOM_css = `
   }
   .searchBoxContainer .alertBox{
       position:absolute;
-      background:red;
       color:white;
       border-radius:50px;
-      top:19px;
-      left:0px;
+      top:-30px;
+      right:-190px;
       height:30px;
+      transition:.3s;
+     
   }
-  .alertText{
-      padding:5px 10px;
+  .activeSlide{
+    top:20px !important;
   }
+ 
   .header .i-search {
       cursor:pointer;
     width: 30px;
@@ -202,8 +239,24 @@ const shadowDOM_css = `
 	z-index: 1;
     }
 
-    
-   
+    .i-alert{
+      color:red;
+      font-size:20px;
+      margin-right:5px;
+      transform:translateY(5px);
+    }
+    .underline{
+      position:relative;
+    }
+    .underline:before{
+      position:absolute;
+      content:'';
+      width:100% !important;
+      height:3px !important;
+      bottom:0 !important;
+      left:0 !important;
+      background-color:#f1ca0b !important;
+    }
 </style>
 `
 const header = document.createElement('template')
@@ -240,36 +293,73 @@ class Header extends HTMLElement{
         const searchIcon = this.shadowRoot.querySelector('.header .i-search')
         const searchBox = this.shadowRoot.querySelector('.searchBox')
         searchBar.addEventListener('click', searchAction)
-
+        searchBar.addEventListener('keyup', searchAction)
+        
+        
         function searchAction(e){
-            let targetText = ''
-            if(e.target === searchIcon){
-                if(searchBox.value === ''){
-                    targetText = 'At least 1 letter'
-                    alertMessage(targetText,true)
-                }else{
-                    targetText = 'Can not find one'
-                    alertMessage(targetText,true)
-                }
+          let targetText = ''
+          if(e.target === searchIcon || e.keyCode === 13){
+            if(searchBox.value === ''){
+              targetText = 'Write at least 1 letter'
+              alertMessage(targetText,true)
+            }else{
+              targetText = 'Not in service yet'
+              alertMessage(targetText,true)
             }
+          }
         }
         function alertMessage(targetText, trigger){
             const newElement = document.createElement('div')
+            if(searchBar.children[2]){
+              searchBar.removeChild(searchBar.children[2])
+            }
             let actionTrigger = trigger
             actionTrigger = false
-            newElement.innerHTML = `           
-                <div class="alertText">${targetText}</div>
+            newElement.innerHTML = `  
+            <span class="material-icons i-alert">
+            block
+            </span>     
+            <span class="alertText">${targetText}</span>
             `
             newElement.classList.add('alertBox')
             searchBar.appendChild(newElement)
+            setTimeout(function(){
+              newElement.classList.add('activeSlide')
+            },10)
             actionTrigger = trigger
-           if(actionTrigger === true){
-               setTimeout(()=>{
+            if(actionTrigger === true){
+              setTimeout(()=>{
+                newElement.classList.remove('activeSlide')
+              },3000)
+              setTimeout(function(){
                 searchBar.removeChild(newElement)
-                searchBox.value=''
-               },3000)
+              },3300)
+              searchBox.value=''
            }
         }
+
+        let activeAnimation = true
+        window.onscroll=()=>{
+          const header = this.shadowRoot.querySelector('.header')
+          if(window.scrollY > 100 && activeAnimation === true){
+            header.className='header activeHeader'
+            activeAnimation = false
+          }
+          if(window.scrollY < 100 && activeAnimation ===false){
+            header.className = 'header inactiveHeader'
+            activeAnimation = true
+          }
+        };
+
+        const menuBtn = this.shadowRoot.querySelectorAll('.menuBtn')
+        function menuUnderLine(){
+          const text = window.location.toString()
+          if(text.includes('index')){
+            menuBtn[0].classList.add('underline')
+          }
+        }
+        menuUnderLine()
+      
     }
 }
 
