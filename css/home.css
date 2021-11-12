@@ -1,9 +1,11 @@
 .heroPageSection {
-  width: 100%;
   height: calc(100vh - 70px);
   min-height: 500px;
   position: relative;
   margin-bottom: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .heroPageSection .heroItem {
@@ -14,6 +16,8 @@
   background-position: center bottom;
   position: relative;
   padding: 20px;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .heroPageSection .heroItem .heroTextPart {
@@ -46,6 +50,14 @@
   background-image: url(/img/hero_1.jpg);
 }
 
+.heroPageSection .item2 {
+  background-image: url(/img/hero_2.jpg);
+}
+
+.heroPageSection .item3 {
+  background-image: url(/img/hero_3.jpg);
+}
+
 .heroPageSection .arrow {
   position: absolute;
   top: 50%;
@@ -71,8 +83,37 @@
   font-weight: bold;
 }
 
-.heroPageSection .nextBtn {
-  right: 50px;
+.heroPageSection .dotBox {
+  position: absolute;
+  bottom: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px 30px;
+  width: 180px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.heroPageSection .dotBox .dot {
+  display: inline-block;
+  width: 20px;
+  height: 4px;
+  background: white;
+  margin: 5px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.activeDot {
+  background-color: #f1ca0b !important;
+  height: 6px !important;
+  width: 25px !important;
+  border-radius: 10px;
 }
 
 .rewardingSection {

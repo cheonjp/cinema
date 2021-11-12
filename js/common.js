@@ -40,7 +40,7 @@ const shadowDOM_css = `
     }
     100%{
       top:0;
-      background-color:rgba(20,20,20,0.9);
+      background-color:rgba(20,20,20,0.8);
     }
   }
   @keyframes returnHeaderAni {
