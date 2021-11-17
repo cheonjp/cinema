@@ -58,26 +58,6 @@
   background-image: url(/img/hero_3.jpg);
 }
 
-.heroPageSection .arrow {
-  position: absolute;
-  top: 50%;
-  color: white;
-  border: 4px solid white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-radius: 50px;
-  width: 40px;
-  height: 40px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  cursor: pointer;
-}
-
 .heroPageSection .prevBtn {
   left: 50px;
   font-weight: bold;
@@ -355,5 +335,84 @@
 
 .introBox .decorationBox .decorationDot:nth-child(5) {
   opacity: .1;
+}
+
+.heroContainer {
+  position: relative;
+}
+
+.heroContainer .arrow {
+  position: absolute;
+  top: 50%;
+  color: white;
+  border: 4px solid white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.heroContainer .prevBtn {
+  left: 50px;
+  font-weight: bold;
+}
+
+.heroContainer .dotBox {
+  position: absolute;
+  bottom: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px 30px;
+  width: 180px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 1;
+}
+
+.heroContainer .dotBox .dot {
+  display: inline-block;
+  width: 20px;
+  height: 4px;
+  background: white;
+  margin: 5px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.heroContainer .gaugeContainer {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+}
+
+.heroContainer .gaugeContainer .gauge {
+  width: 0;
+  height: 100%;
+}
+
+.activeGauge {
+  -webkit-transition: width 5s linear;
+  transition: width 5s linear;
+  width: 100% !important;
+  background-color: red;
 }
 /*# sourceMappingURL=home.css.map */

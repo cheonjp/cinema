@@ -25,6 +25,7 @@ const shadowDOM_css = `
     animation-duration:.5s;
     animation-fill-mode: forwards;
   }
+
   .inactiveHeader{
     animation-name:returnHeaderAni;
     animation-duration:.5s;

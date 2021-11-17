@@ -1,5 +1,6 @@
 // Hero page section
 (function(){
+    // movies data
     const heroMovies = [
         {
             
@@ -28,7 +29,7 @@
         }
     ]
 
-
+    // creating hero section
     const layPoster = heroMovies.map((movie)=>{
         return `
             <div class="heroItem">
@@ -72,28 +73,13 @@
         </div>
     </div>  
     `
-    // clonedFirstMovie.classList.add('clonedFirstMovie')
     container.innerHTML+=`
     ${clonedFirstMovie}
-          <div class="arrow prevBtn">
-                <span class="material-icons">
-                    arrow_back_ios_new
-                    </span>
-            </div>
-            <div class="arrow nextBtn">
-                <span class="material-icons">
-                    arrow_forward_ios
-                    </span>
-            </div>
-            <div class="dotBox">
-                <span class="dot activeDot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+ 
     `
    
 
-    
+    // adding class name to target posters
     function addClass(){
         let classNum = 1
         const posters = document.querySelectorAll('.heroItem')
@@ -128,12 +114,15 @@
     
 
     const nextBtn = document.querySelector('.nextBtn')
+    const prevBtn = document.querySelector('.prevBtn')
     const dotsBox = document.querySelector('.dotBox')
     
     nextBtn.style.left = window.innerWidth - 100 + 'px'
     
     const dotCenter = (window.innerWidth / 2) - 86
     dotsBox.style.left=dotCenter + 'px'
+
+    container.style.transform = `translateX(-${window.innerWidth}px)`
 
     
     // arrow click function
@@ -143,26 +132,111 @@
     })
 
     let slideIndex = 1
-    function changeSlide(e){
-        const heroItems = document.querySelectorAll('.heroItem')
+    let slideWidth = window.innerWidth
+    function changeSlide(){
+        container.style.transition = '.5s ease-in-out'
         if(this.classList.contains('prevBtn')){
-            slideIndex-=1
-            if(slideIndex === 0){
+            slideIndex--
+            if(slideIndex <= 0){
+                // slideIndex = heroMovies.length-1
+                returnIndex()
+            }
+            container.style.transform=`translateX(-${slideWidth * slideIndex}px)`
+            leftArrowDotsAction()
+            gaugeTimer()
+        }else if(this.classList.contains('nextBtn')){
+            slideIndex++
+            if(slideIndex > heroMovies.length-1){
+                returnIndex()
+            }
+            container.style.transform=`translateX(-${slideWidth * slideIndex}px)`
+            rightArrowDotsAction()
+            gaugeTimer()
+        }
+        
+    }
+
+    function returnIndex(){
+        setTimeout(()=>{
+            container.style.transition = '0s'
+            if(slideIndex > heroMovies.length-1){
+                slideIndex = 0
+            }else if(slideIndex <= 0 ){
                 slideIndex = heroMovies.length
             }
-            heroItems.forEach(function(poster){
-                poster.style.transform='translate(-1920px,0)'
-            })
-        }else if(this.classList.contains('nextBtn')){
-            slideIndex+=1
-            if(slideIndex > heroMovies.length){
-                slideIndex = 0
+            container.style.transform=`translateX(-${slideWidth * slideIndex}px)`
+        },500)
+    }
+
+    const dots = document.querySelectorAll('.dot')
+    function leftArrowDotsAction(){
+        dots.forEach((dot)=>{
+            dot.classList.remove('activeDot')
+            if(slideIndex === 0){
+                dots[2].classList.add('activeDot')
+            }else if(slideIndex === 1){
+                dots[0].classList.add('activeDot')
+            }else if(slideIndex ===2){
+                dots[1].classList.add('activeDot')
             }
-            heroItems.forEach(function(poster){
-                poster.style.transform='translate(-1920px,0)'
+        })
+    }
+    function rightArrowDotsAction(){
+        dots.forEach((dot)=>{
+            dot.classList.remove('activeDot')
+            if(slideIndex === 3){
+                dots[2].classList.add('activeDot')
+            }else if(slideIndex === 1){
+                dots[0].classList.add('activeDot')
+            }else if(slideIndex ===2){
+                dots[1].classList.add('activeDot')
+            }
+        })
+    }
+
+    
+    const gauge = document.querySelector('.gauge')
+    function gaugeTimer(){
+        gauge.className ='gauge'
+        setTimeout(function(){
+            gauge.classList.add('activeGauge')
+        },10)
+       
+    }
+    gauge.addEventListener('transitionend',function(){
+        nextBtn.click()
+    })
+
+
+    gaugeTimer()
+
+    dotClickSlide()
+
+    function dotClickSlide(){
+        dots.forEach((dot)=>{
+            dot.addEventListener('click',(e)=>{
+                targetDot()
+                dot.classList.remove('activeDot')
+                if(e.target === dots[0]){
+                    slideIndex = 0
+                    dots[0].classList.add('activeDot')
+                }else if(e.target === dots[1]){
+                    slideIndex = 1
+                    dots[1].classList.add('activeDot')
+                } else if(e.target === dots[2]){
+                    slideIndex =2
+                    dots[2].classList.add('activeDot')
+                }
+                container.style.transition = '.5s ease-in-out'
+                container.style.transform=`translateX(-${slideWidth * slideIndex}px)`
+                gaugeTimer()
+            })
+        })
+        function targetDot(){
+            dots.forEach(function(dot){
+                dot.classList.remove('activeDot')
             })
         }
     }
-
 
 })();
