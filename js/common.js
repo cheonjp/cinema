@@ -19,6 +19,7 @@ const shadowDOM_css = `
         -ms-flex-align: center;
             align-items: center;
     padding: 0 20px;
+    z-index:2 !important;
   }
   .activeHeader{
     animation-name:headerAni;
@@ -404,3 +405,41 @@ class Footer extends HTMLElement{
 }
 
 window.customElements.define('template-footer',Footer)
+
+
+const closeButtons = document.querySelectorAll('.i-close')
+
+
+function closeBtn(){
+  const closeButtons = document.querySelectorAll('.i-close')
+  closeButtons.forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+      console.log('test')
+      closeModal()
+    })
+  })
+}
+
+
+function closeModal(){
+  const modal = document.querySelector('.modal')
+  const parentElement = modal.parentElement
+  modal.classList.remove('activeModal')
+  modal.addEventListener('transitionend',()=>{
+    if(!modal.classList.contains('activeModal')){
+      parentElement.removeChild(modal)
+    }
+  })
+}
+
+window.onclick=(e)=>{
+  if(e.target.matches('.modal') || e.target.matches('.i-close')){
+    closeModal()
+  }
+}
+closeBtn()
+
+
+
+
+

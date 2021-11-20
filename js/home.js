@@ -1,34 +1,6 @@
+
 // Hero page section
 (function(){
-    // movies data
-    const heroMovies = [
-        {
-            
-            title:'Spider Man4',
-            image:'/img/hero_1.jpg',
-            text:'The most dangerous thing is coming. The most exciting series finally released.',
-            ticket:'임시',
-            trailer:'임시',
-        
-        },
-        {
-          
-            title:'Lost',
-            image:'/img/hero_2.jpg',
-            text:'Now, I bet you will see the most horrified, scared movie in this year.',
-            ticket:'',
-            trailer:''
-        },
-        {
-           
-            title:'unforgettable Memory',
-            image:'/img/hero_3.jpg',
-            text:'I met her once, but I can feel something odd. Is it love?',
-            ticket:'',
-            trailer:''
-        }
-    ]
-
     // creating hero section
     const layPoster = heroMovies.map((movie)=>{
         return `
@@ -40,7 +12,7 @@
                         credit_card
                         </span>Buy tickets</a>
 
-                    <a href="#" class="grayBtn"><span class="material-icons">
+                    <a href="#" class="grayBtn" data-trailer ="${movie.title}"><span class="material-icons">
                         videocam
                         </span> Play trailer</a>
                 </div>
@@ -98,7 +70,7 @@
             credit_card
             </span>Buy tickets</a>
 
-        <a href="#" class="grayBtn"><span class="material-icons">
+        <a href="#" class="grayBtn" data-trailer="${heroMovies[heroMovies.length-1].title}"><span class="material-icons">
             videocam
             </span> Play trailer</a>
         </div>
@@ -238,5 +210,49 @@
             })
         }
     }
-
 })();
+
+// creating trailer
+
+const body = document.querySelector('body')
+const modalContainer = document.createElement('div');
+(function(){
+
+    const trailerButtons = document.querySelectorAll('.heroContainer .grayBtn')
+    trailerButtons.forEach((trailerBtn)=>{
+        trailerBtn.addEventListener('click',(e)=>{
+            const data = trailerBtn.dataset.trailer
+            heroMovies.forEach((movie)=>{
+                if(movie.title === data){
+                    createModal(movie)
+                }
+            })
+        })
+    })
+})()
+
+function createModal(targetMovie){
+    modalContainer.innerHTML = `
+        <div class="modalContainer">
+            <span class="material-icons i-close">
+                close
+                </span>
+            <video class="trailerVideo" controls muted autoplay>
+                <source src="${targetMovie.trailer}">
+            </video>
+        </div>
+    `
+    modalContainer.classList.add('modal')
+    body.appendChild(modalContainer)
+    modalContainer.classList.add('activeModal')
+}
+
+
+
+
+
+
+
+
+
+// https://xd.adobe.com/view/c5275501-8693-4b52-9135-69d10bdff06a-9074/
