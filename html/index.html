@@ -18,27 +18,35 @@
     {
         
         title:'Spider Man4',
-        image:'/img/hero_1.jpg',
+        image:'../img/hero_1.jpg',
         text:'The most dangerous thing is coming. The most exciting series finally released.',
-        ticket:'임시',
         trailer:'../video/spiderman.mp4',
-    
+        description:'Peter Parker as he prepares for his future with Mary Jane Watson, while facing three new villains: Uncle Ben\'s true killer, Flint Marko, who becomes Sandman after a freak accident; Harry Osborn, his former friend, who is now aware of Peter\'s identity and ...',
+        length:'127 Min',
+        icon:['i-adult', 'violence','Sexual oriented'],
+        actor:'Lion Mack, Jone Jons, Mark Hunt'
     },
     {
       
         title:'Lost',
-        image:'/img/hero_2.jpg',
+        image:'../img/hero_2.jpg',
         text:'Now, I bet you will see the most horrified, scared movie in this year.',
-        ticket:'',
-        trailer:'../video/lost.mp4'
+        trailer:'../video/lost.mp4',
+        description:'While searching for their missing archaeology professor, a group of students discovers a cave where time passes differently than it does on the surface.',
+        length:'108 Min',
+        icon:['i-adolescent','violence','horror'],
+        actor:'Tom Cruise, James Willis, Matt Hardy'
     },
     {
        
         title:'unforgettable Memory',
-        image:'/img/hero_3.jpg',
+        image:'../img/hero_3.jpg',
         text:'I met her once, but I can feel something odd. Is it love?',
-        ticket:'',
-        trailer:'../video/memory.mp4'
+        trailer:'../video/memory.mp4',
+        description:'Unforgettable Memory is a holiday music special full of breathtaking performances and heart-warming inspirational Christmas themes, hosted and performed by American pop violinist Lindsey Stirling. Stunning production quality showcases favorites like “Angels We Have Heard on High,” “All I Want for Christmas is You,” “Let It Snow,” and “Dance of the Sugar Plum Fairy.” Filmed exclusively for this special, the festive performances include elaborate dance numbers, over-the-top acrobatics, and live on-site performances in her fans’ neighborhoods to spread Christmas cheer.',
+        length:'121 Min',
+        icon:['i-all','romance','Comedy'],
+        actor:'Londa Rousy, Missha Tate, Black Jack'
     }
 ];
     </script>
@@ -188,15 +196,168 @@
                 <span class="material-icons i-close">
                     close
                     </span>
-                <video class="trailerVideo" controls muted autoplay>
-                    <source src="../video/spiderman.mp4">
-                </video>
+                <div class="contentBox">
+                    <div class="titleContainer">
+                        <h2 class="movieTitle">Movie title</h2>
+                    </div>
+                    <div class="navigation">
+                        <div class="process movie status"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process selection"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process checkout"></div>
+                    </div>
+                    <div class="infoContainer">
+                        <div class="movieImg"></div>
+                        <div class="movieInfoBox">
+                            <div class="infoTopPart">
+                                <div class="movieLength">Movie length: <span>127</span> Min</div>
+                                <div class="iconBox">
+                                    <span class="i-adult"></span>
+                                    <span class="genreInfo">Violence</span>
+                                    <span class="genreInfo"> sexually oriented</span>
+                                </div>
+                            </div>
+                            <div class="infoSubtitle">Cast</div>
+                            <div class="cast">Peter Packer, Lion Mack, Mark Hunt</div>
+                            <div class="infoSubtitle">Synopsis</div>
+                            <div class="movieDescriction">
+                                'Peter Parker as he prepares for his future with Mary Jane Watson, while facing three new villains: Uncle Ben\'s true killer, Flint Marko, who becomes Sandman after a freak accident; Harry Osborn, his former friend, who is now aware of Peter\'s identity and ...
+                            </div>
+                        </div>
+
+
+                        <div class="bookingBox">
+                            <div class="bookingDateContainer section">
+                                <div class="currentMonth">
+                                    2021.09
+                                </div>
+                                <div class="dateContainer">
+                                    <div class="dateBox">
+                                        <span class="date select">Mon</span>
+                                        <span class="date">Tus</span>
+                                        <span class="date">Wed</span>
+                                        <span class="date">Thu</span>
+                                        <span class="date">Fri</span>
+                                        <span class="date">Sat</span>
+                                        <span class="date">Sun</span>
+                                        <span class="date">Mon</span>
+                                        <span class="date">Tus</span>
+                                        <span class="date">Wed</span>
+                                    </div>
+                                    <div class="dayBox">
+                                        <span class="day select">1</span>
+                                        <span class="day">2</span>
+                                        <span class="day">3</span>
+                                        <span class="day">4</span>
+                                        <span class="day">5</span>
+                                        <span class="day">6</span>
+                                        <span class="day">7</span>
+                                        <span class="day">8</span>
+                                        <span class="day">9</span>
+                                        <span class="day">10</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selectTimeContainer section">
+                                <div class="titleBox">
+                                    <span class="material-icons i-time">
+                                        schedule
+                                        </span>
+                                        <span>Select Movie time</span>
+                                </div>
+                                <div class="timeBoxContainer">
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selectSeatContainer section">
+                                <div class="titleBox">
+                                    <span class="material-icons i-chair">
+                                        chair
+                                        </span>
+                                    <span>Select seat</span>
+                                </div>
+                                <div class="seatContainer">
+                                    <div class="seatColumn">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                        <select id="people" name="" id="">
+                                            <option value="People">1</option>
+                                            <option value="People">2</option>
+                                            <option value="People">3</option>
+                                            <option value="People">4</option>
+                                            <option value="People">5</option>
+                                            <option value="People">6</option>
+                                            <option value="People">7</option>
+                                            <option value="People">8</option>
+                                            <option value="People">9</option>
+                                            <option value="People">10</option>
+                                            <option value="People" selected disabled>People</option>
+                                        </select>
+                                    </div>
+                                    <div class="seatColumn">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                        <button id="searchSeat" class="yellowBorderBtn">
+                                            <span class="material-icons i-seat">
+                                                airline_seat_recline_normal
+                                                </span>
+                                                Find available seat
+                                        </button>
+                                    </div>
+                                    <div class="seatColumn lastPriceBox">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="processingButtonBox">
+                        <button class="backBtn whiteBorderBtn">Back</button>
+                        <button class="nextBtn yellowBorderBtn">Next</button>
+                    </div>
+                </div>
             </div>
         </div> -->
         <template-footer></template-footer>
     </div>
-    <script src="/js/common.js"></script>
     <script src="/js/home.js"></script>
+    <script src="/js/common.js"></script>
 </body>
 
 </html>

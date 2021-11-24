@@ -414,8 +414,12 @@ function closeBtn(){
   const closeButtons = document.querySelectorAll('.i-close')
   closeButtons.forEach((btn)=>{
     btn.addEventListener('click',()=>{
-      console.log('test')
-      closeModal()
+      console.log(btn)
+      if(btn.parentElement.classList.contains('modalContainer')){
+        closeModal()
+      }else if(btn.parentElement.classList.contains('subModalContainer')){
+        closeSubModal()
+      }
     })
   })
 }
@@ -431,13 +435,65 @@ function closeModal(){
     }
   })
 }
+function closeSubModal(){
+  const subModal = document.querySelector('.subModal')
+  const parentElement = subModal.parentElement
+  subModal.classList.remove('activeModal')
+  setTimeout(()=>{
+
+    parentElement.removeChild(subModal)
+  },300)
+}
 
 window.onclick=(e)=>{
-  if(e.target.matches('.modal') || e.target.matches('.i-close')){
+  if(e.target.matches('.modal')){
     closeModal()
   }
+  closeBtn()
 }
-closeBtn()
+
+
+const movieInfo = [
+  {
+      
+      title:'Spider Man4',
+      image:'/img/hero_1.jpg',
+      description:'Peter Parker as he prepares for his future with Mary Jane Watson, while facing three new villains: Uncle Ben\'s true killer, Flint Marko, who becomes Sandman after a freak accident; Harry Osborn, his former friend, who is now aware of Peter\'s identity and ...',
+      trailer:'../video/spiderman.mp4',
+      length:'127 Min',
+      icon:['adult', 'violence'],
+      actor:'Lion Mack, Jone Jons, Mark Hunt'
+      
+  
+  },
+  {
+    
+      title:'Lost',
+      image:'/img/hero_2.jpg',
+      description:'While searching for their missing archaeology professor, a group of students discovers a cave where time passes differently than it does on the surface.',
+      ticket:'',
+      trailer:'../video/lost.mp4',
+      length:'108 Min',
+      icon:['adolescent','violence'],
+      actor:'Tom Cruise, James Willis, Matt Hardy'
+  },
+  {
+     
+      title:'unforgettable Memory',
+      image:'/img/hero_3.jpg',
+      text:'I met her once, but I can feel something odd. Is it love?',
+      ticket:'',
+      trailer:'../video/memory.mp4',
+      length:'121 Min',
+      icon:['adolescent','romance'],
+      actor:'Londa Rousy, Missha Tate, Black Jack'
+  }
+];
+
+
+
+
+
 
 
 

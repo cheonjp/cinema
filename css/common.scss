@@ -111,6 +111,7 @@ body{
 }
 .orangeBtn,.grayBtn{
     background-color:$orange;
+    margin-right:5px;
     color:white;
     text-decoration: none;
     font-size:16px;
@@ -222,8 +223,10 @@ h1{
     justify-content: center;
     align-items: center;
     .modalContainer{
+        padding:50px;
         background-color:#00132B;
         width:80%;
+        min-width:1350px;
         height:80%;
         max-width:1350px;
         max-height:700px;
@@ -243,12 +246,377 @@ h1{
             padding:25px;
         }
     }
+    .subModal{
+        width:100%;
+        height:100%;
+        background-color:rgba(0,0,0,0.5);
+        position:absolute;
+        left:0;
+        top:0;
+        z-index:1;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        .subModalContainer{
+            // padding:50px;
+            background-color:rgba(0,0,0,0);
+            width:80%;
+            height:80%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            position:relative;
+            transition:.3s;
+            transform:scale(0);
+            .i-close{
+                cursor: pointer;
+                color: white;
+                font-size: 30px;
+                position: absolute;
+                top: 39px;
+                right: 129px;
+                padding: 25px;
+            }
+        }
+    }
     .trailerVideo{
         width:80%;
         height:80%;
+    }
+    .contentBox{
+        position:relative;
+        width:100%;
+        height:100%;
+        .titleContainer{
+            display:flex;
+            justify-content: center;
+        }
+        .movieTitle{
+            color:white;
+            font-size:$f-22;
+            text-align: center;
+            display:inline-block;
+            width:auto;
+            margin:auto;
+            position:relative;
+            margin-bottom:40px;
+            &:before{
+                position:absolute;
+                width:100%;
+                height:1px;
+                content:'';
+                bottom:-10px;
+                left:0;
+                background-color:$orange;
+            }
+        }
+        .navigation{
+            position:absolute;
+            display:flex;
+            top:20px;
+            right:55px;
+        }
+        .process{
+            width: 7px;
+            height:7px;
+            background-color:white;
+            border-radius: 50px;
+            margin-left:30px;
+            transition:.3s linear;
+        }
+        .process.movie,.process.selection,.process.checkout{
+            width:12px !important;
+            height:12px !important;
+            transform: translateY(-2px);
+            position:relative;
+            &:before{
+                position:absolute;
+                top:-30px;
+                left:0;
+                text-align: center;
+                color:white;
+                font-family: 'calibri', Arial;
+                white-space: nowrap;
+            }
+        }
+        .process.movie:before{
+            content:'Movie';
+            transform: translateX(-15px);
+        }
+        .process.selection:before{
+            content:'Select time & Seat';
+            transform: translateX(-55px);
+        }
+        .process.checkout:before{
+            content:'Check out';
+            transform: translateX(-25px);
+        }
+        .infoContainer{
+            display:flex;
+            width:100%;
+            height:90%;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+        .movieImg{
+            width:40%;
+            height:100%;
+            // background-image:url(../img/hero_1.jpg);
+            background-size:cover;
+            background-position: center center;
+        }
+        .bookingBox,.movieInfoBox{
+            padding-top:40px;
+            color:white;
+            width:57%;
+            height:100%;
+            transition:.3s;
+        }
+        .bookingBox{
+            transform:translateX(400px);
+            opacity:0;
+        }
+        .bookingDateContainer{
+            font-family: 'calibri', Arial;
+            font-weight: bold;
+            color:white;
+            .currentMonth{
+                color:white;  
+                font-weight: bold;
+                color:$orange;
+                text-align: center;
+                margin-bottom:15px;
+            }
+            .dateContainer{
+                .dateBox, .dayBox{
+                    display:flex;
+                    justify-content: space-between;
+                }
+                .day,.date{
+                    width:40px;
+                    text-align: center;
+                    margin-bottom:10px;
+                    cursor:pointer;
+                }
+                .dayBox{
+                    background-color:#A5A5A5;
+                }
+                .day{
+                    margin-top:7px;
+                }
+            }
+        }
+        .section{
+            margin-bottom:50px;
+            color:white;
+        }
+        .titleBox{
+            display:flex;
+            font-size:$f-18;
+            justify-content: center;
+            margin-bottom:25px;
+            span:last-child{
+                transform: translateY(2px);
+                margin-left:10px;
+            }
+        }
+        .timeBoxContainer{
+            display:flex;
+            justify-content: space-between;
+            font-family: 'calibri', Arial;
+        }
+        .timeBtnBox{
+            display:flex;
+        }
+        .timeBtn{
+            border: 1px solid white;
+            padding:7px 15px;
+            margin-right:10px;
+            cursor:pointer;
+        }
+        .seat{
+            transform:translateY(7px);
+        }
+        .seatContainer{
+            display:flex;
+            justify-content: space-between;
+        }
+        .seatColumn{
+            .seatGradeBox{
+                display:flex;
+                .gradeBox{
+                    width:13px;
+                    height:13px;
+                    background-color:white;
+                    transform:translateY(1px);
+                    margin-right:10px;
+                }
+            }
+            .priceBox{
+                margin:15px 0;
+                .price{
+                    font-size: $f-22;
+                }
+            }
+
+            #people{
+                padding:8px 10px;
+                width:130px;
+            }
+            #searchSeat{
+                background:none;
+                color:$yellow;
+                border:1px solid $yellow;
+                outline:none;
+                padding:10px 15px;
+                display:flex;
+                cursor:pointer;
+                
+                .i-seat{
+                    width:15px;
+                    height:15px;
+                    margin-right:10px;
+                    transform: translateY(-3px);
+                }
+            }
+        }
+
+        .infoTopPart{
+            display:flex;
+            justify-content: space-between;
+        }
     }
 }
 
 .activeModal > div{
     transform:scale(1) !important;
+}
+.status{
+    background-color:$orange !important;
+    &:before{
+        color:$orange !important;
+    }
+}
+.select{
+    color:$orange !important;
+}
+.lastPriceBox{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .priceBox{
+        margin:0 !important;
+        text-align: right;
+        font-weight: bold;
+        .price{
+            font-size:$f-30 !important;
+        }
+    }
+}
+.processingButtonBox{
+    position:absolute;
+    bottom:0;
+    right:0;
+    
+}
+.whiteBorderBtn{
+    padding:10px 15px;
+    background:none;
+    border: 1px solid white;
+    color:white;
+    outline:none;
+    cursor:pointer;
+}
+.yellowBorderBtn{
+    padding:10px 15px;
+    background:none;
+    border: 1px solid $yellow;
+    color:$yellow;
+    outline:none;
+    cursor:pointer;
+}
+.backBtn{
+    margin-right:5px;
+}
+.i-adult{
+    display:inline-block;
+    margin-right:3px;
+    width:30px;
+    height:30px;
+    background:red;
+    border-radius: 50px;
+    position:relative;
+    &:before{
+        position:absolute;
+        content:'18';
+        color:white;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+}
+.i-adolescent{
+    display:inline-block;
+    margin-right:3px;
+    width:30px;
+    height:30px;
+    background:rgb(253, 165, 0);
+    border-radius: 50px;
+    position:relative;
+    &:before{
+        position:absolute;
+        content:'15';
+        color:white;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+}
+.i-all{
+    display:inline-block;
+    margin-right:3px;
+    width:30px;
+    height:30px;
+    background:rgb(0, 168, 0);
+    border-radius: 50px;
+    position:relative;
+    &:before{
+        position:absolute;
+        content:'All';
+        color:white;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+}
+.genreInfo{
+    padding:5px 10px;
+    border-right: 1px solid white;
+    // margin:0 5px;
+    &:last-child{
+        border-right:none !important;
+    }
+}
+.iconBox{
+    display:flex;
+    
+}
+
+
+.infoSubtitle{
+    font-size:20px;
+    margin-bottom:10px;
+    margin-top:30px;
+}
+
+.displayNone{
+    display:none !important;
+}
+.activeProcess{
+    transform:translateX(-400px) !important;
+    opacity:0 !important;
+}
+.activeShow{
+    transform: translateX(0) !important;
+    opacity:1 !important;
 }

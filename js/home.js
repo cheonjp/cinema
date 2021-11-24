@@ -1,5 +1,3 @@
-
-// Hero page section
 (function(){
     // creating hero section
     const layPoster = heroMovies.map((movie)=>{
@@ -8,7 +6,7 @@
                 <div class="heroTextPart">
                     <p class="title">${movie.title}</p>
                     <p class="subTitle">${movie.text}</p>
-                    <a href="#" class="orangeBtn"><span class="material-icons">
+                    <a href="#" class="orangeBtn" data-ticket ="${movie.title}"><span class="material-icons">
                         credit_card
                         </span>Buy tickets</a>
 
@@ -35,7 +33,7 @@
     <div class="heroTextPart">
         <p class="title">${heroMovies[0].title}</p>
         <p class="subTitle">${heroMovies[0].text}</p>
-        <a href="#" class="orangeBtn"><span class="material-icons">
+        <a href="#" class="orangeBtn" data-ticket ="${heroMovies[0].title}"><span class="material-icons">
             credit_card
             </span>Buy tickets</a>
 
@@ -47,7 +45,6 @@
     `
     container.innerHTML+=`
     ${clonedFirstMovie}
- 
     `
    
 
@@ -66,7 +63,7 @@
     <div class="heroTextPart">
         <p class="title">${heroMovies[heroMovies.length-1].title}</p>
         <p class="subTitle">${heroMovies[heroMovies.length-1].text}</p>
-        <a href="#" class="orangeBtn"><span class="material-icons">
+        <a href="#" class="orangeBtn" data-ticket ="${heroMovies[heroMovies.length-1].title}"><span class="material-icons">
             credit_card
             </span>Buy tickets</a>
 
@@ -224,28 +221,308 @@ const modalContainer = document.createElement('div');
             const data = trailerBtn.dataset.trailer
             heroMovies.forEach((movie)=>{
                 if(movie.title === data){
-                    createModal(movie)
+                    createTrailer(movie)
+                }
+            })
+        })
+    })
+})();
+
+(function(){
+    const ticketBtns = document.querySelectorAll('.heroContainer .orangeBtn')
+    ticketBtns.forEach((ticketBtn)=>{
+        ticketBtn.addEventListener('click',(e)=>{
+            const data = ticketBtn.dataset.ticket
+            heroMovies.forEach((movie)=>{
+                if(movie.title === data){
+                    createInfoModal(movie)
                 }
             })
         })
     })
 })()
 
-function createModal(targetMovie){
-    modalContainer.innerHTML = `
-        <div class="modalContainer">
+function createTrailer(targetMovie){
+    const modal = document.querySelector('.modal')
+    if(modal === null){
+        modalContainer.innerHTML = `
+            <div class="modalContainer">
+                <span class="material-icons i-close">
+                    close
+                    </span>
+                <video class="trailerVideo" controls muted autoplay>
+                    <source src="${targetMovie.trailer}">
+                </video>
+            </div>
+        `
+        modalContainer.classList.add('modal')
+        body.appendChild(modalContainer)
+        modalContainer.classList.add('activeModal')
+    }else{
+        const trailerBtn = document.querySelectorAll('.modal .grayBtn')
+        const modalContainer = document.querySelector('.modalContainer')
+        trailerBtn.forEach((btn)=>{
+            btn.onclick=()=>{
+                if(btn.dataset.trailer === targetMovie.title){
+                    const subModal = document.createElement('div')
+                    subModal.classList.add('subModal')
+                    subModal.innerHTML=`
+                    <div class="subModalContainer">
+                        <span class="material-icons i-close">
+                            close
+                            </span>
+                        <video class="trailerVideo" controls muted autoplay>
+                            <source src="${targetMovie.trailer}">
+                        </video>
+                    </div>
+                    `
+                    modalContainer.appendChild(subModal)
+                    subModal.classList.add('activeModal')
+                }
+            }
+        })
+
+        // modalContainer.innerHTML = `
+        //         <div class="subModalContainer">
+        //             <span class="material-icons i-close">
+        //                 close
+        //                 </span>
+        //             <video class="trailerVideo" controls muted autoplay>
+        //                 <source src="${targetMovie.trailer}">
+        //             </video>
+        //         </div>
+        // `
+    }
+
+}
+
+function createInfoModal(targetMovie){
+    const {title,image,text,trailer,description,length,icon,actor}=targetMovie
+    const targetContent = document.createElement('div')
+    targetContent.innerHTML=`
+        <div class="modalContainer activeModal">
             <span class="material-icons i-close">
                 close
                 </span>
-            <video class="trailerVideo" controls muted autoplay>
-                <source src="${targetMovie.trailer}">
-            </video>
+            <div class="contentBox">
+                <div class="titleContainer">
+                    <h2 class="movieTitle">${title}</h2>
+                </div>
+                <div class="navigation">
+                    <div class="process movie status"></div>
+                    <div class="process"></div>
+                    <div class="process"></div>
+                    <div class="process"></div>
+                    <div class="process selection"></div>
+                    <div class="process"></div>
+                    <div class="process"></div>
+                    <div class="process"></div>
+                    <div class="process checkout"></div>
+                </div>
+                <div class="infoContainer">
+                    <div class="movieImg" style="background-image:url(${image})"></div>
+                    <div class="movieInfoBox">
+                        <div class="infoTopPart">
+                            <div class="movieLength">Movie length: <span>${length}</span></div>
+                            <div class="iconBox">
+                                <span class="${icon[0]}"></span>
+                                <span class="genreInfo">${icon[1]}</span>
+                                <span class="genreInfo">${icon[2]}</span>
+                            </div>
+                        </div>
+                        <div class="infoSubtitle">Cast</div>
+                        <div class="cast">${actor}</div>
+                        <div class="infoSubtitle">Synopsis</div>
+                        <div class="movieDescriction">
+                            ${description}
+                        </div>
+                    </div>
+                    <div class="bookingBox displayNone">
+                        <div class="bookingDateContainer section">
+                            <div class="currentMonth">
+                                2021.09
+                            </div>
+                            <div class="dateContainer">
+                                <div class="dateBox">
+                                    <span class="date select">Mon</span>
+                                    <span class="date">Tus</span>
+                                    <span class="date">Wed</span>
+                                    <span class="date">Thu</span>
+                                    <span class="date">Fri</span>
+                                    <span class="date">Sat</span>
+                                    <span class="date">Sun</span>
+                                    <span class="date">Mon</span>
+                                    <span class="date">Tus</span>
+                                    <span class="date">Wed</span>
+                                </div>
+                                <div class="dayBox">
+                                    <span class="day select">1</span>
+                                    <span class="day">2</span>
+                                    <span class="day">3</span>
+                                    <span class="day">4</span>
+                                    <span class="day">5</span>
+                                    <span class="day">6</span>
+                                    <span class="day">7</span>
+                                    <span class="day">8</span>
+                                    <span class="day">9</span>
+                                    <span class="day">10</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="selectTimeContainer section">
+                            <div class="titleBox">
+                                <span class="material-icons i-time">
+                                    schedule
+                                    </span>
+                                    <span>Select Movie time</span>
+                            </div>
+                            <div class="timeBoxContainer">
+                                <div class="timeBtnBox">
+                                    <div class="timeBtn">12:18</div>
+                                    <div class="seat">16 Seats</div>
+                                </div>
+                                <div class="timeBtnBox">
+                                    <div class="timeBtn">12:18</div>
+                                    <div class="seat">16 Seats</div>
+                                </div>
+                                <div class="timeBtnBox">
+                                    <div class="timeBtn">12:18</div>
+                                    <div class="seat">16 Seats</div>
+                                </div>
+                                <div class="timeBtnBox">
+                                    <div class="timeBtn">12:18</div>
+                                    <div class="seat">16 Seats</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="selectSeatContainer section">
+                            <div class="titleBox">
+                                <span class="material-icons i-chair">
+                                    chair
+                                    </span>
+                                <span>Select seat</span>
+                            </div>
+                            <div class="seatContainer">
+                                <div class="seatColumn">
+                                    <div class="seatGradeBox">
+                                        <div class="gradeBox"></div>
+                                        <div>Normal seats</div>
+                                    </div>
+                                    <div class="priceBox">
+                                        <div>Price: <span class="price">12</span>$</div>
+                                    </div>
+                                    <select id="people" name="" id="">
+                                        <option value="People">1</option>
+                                        <option value="People">2</option>
+                                        <option value="People">3</option>
+                                        <option value="People">4</option>
+                                        <option value="People">5</option>
+                                        <option value="People">6</option>
+                                        <option value="People">7</option>
+                                        <option value="People">8</option>
+                                        <option value="People">9</option>
+                                        <option value="People">10</option>
+                                        <option value="People" selected disabled>People</option>
+                                    </select>
+                                </div>
+                                <div class="seatColumn">
+                                    <div class="seatGradeBox">
+                                        <div class="gradeBox"></div>
+                                        <div>Normal seats</div>
+                                    </div>
+                                    <div class="priceBox">
+                                        <div>Price: <span class="price">12</span>$</div>
+                                    </div>
+                                    <button id="searchSeat" class="yellowBorderBtn">
+                                        <span class="material-icons i-seat">
+                                            airline_seat_recline_normal
+                                            </span>
+                                            Find available seat
+                                    </button>
+                                </div>
+                                <div class="seatColumn lastPriceBox">
+                                    <div class="seatGradeBox">
+                                        <div class="gradeBox"></div>
+                                        <div>Normal seats</div>
+                                    </div>
+                                    <div class="priceBox">
+                                        <div>Price: <span class="price">12</span>$</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="processingButtonBox">
+                    <a href="#" class="orangeBtn" data-ticket ="${title}"><span class="material-icons">
+                        credit_card
+                    </span>Buy tickets</a>
+
+                    <a href="#" class="grayBtn" data-trailer ="${title}"><span class="material-icons">
+                        videocam
+                    </span> Play trailer</a>
+                    <button class="backBtn whiteBorderBtn">Back</button>
+                    <button class="nextBtn yellowBorderBtn">Next</button>
+                </div>
+            </div>
         </div>
     `
-    modalContainer.classList.add('modal')
-    body.appendChild(modalContainer)
-    modalContainer.classList.add('activeModal')
+    body.appendChild(targetContent)
+    targetContent.classList.add('modal')
+    setTimeout(function(){
+        targetContent.classList.add('activeModal')
+    },10)
+    changeBtn('movie')
+    createTrailer(targetMovie)
+    ticketing(targetMovie)
 }
+
+const changeBtn = (process)=>{
+    const backBtn = document.querySelector('.modalContainer .backBtn')
+    const nextBtn = document.querySelector('.modalContainer .nextBtn')
+    const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
+    const trailerBtn = document.querySelector('.modalContainer .grayBtn')
+    if(process ==='movie'){
+        backBtn.classList.add('displayNone')
+        nextBtn.classList.add('displayNone')
+    }else{
+        ticketBtn.classList.add('displayNone')
+        trailerBtn.classList.add('displayNone')
+        backBtn.classList.remove('displayNone')
+        nextBtn.classList.remove('displayNone')
+    }
+}
+
+const ticketing=(process)=>{
+    const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
+    const movieInfo = document.querySelector('.movieInfoBox')
+    const bookingBox = document.querySelector('.bookingBox')
+    ticketBtn.onclick=()=>{
+        movieInfo.classList.add('activeProcess')
+        movieInfo.ontransitionend=()=>{
+            movieInfo.classList.add('displayNone')
+            bookingBox.classList.remove('displayNone')
+            setTimeout(function(){
+                bookingBox.classList.add('activeShow')
+            },20)
+            changeBtn('booking')
+            activeNavi('booking')
+        }
+    }
+}
+
+let timing = 0
+function activeNavi(status){
+    const  statusDots = document.querySelectorAll('.process')
+    for(let i=0;i<5; i++){
+        setTimeout(()=>{
+            statusDots[i].classList.add('status')
+        },timing)
+        timing+=50
+    }
+}
+
+
 
 
 
