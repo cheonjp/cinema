@@ -230,6 +230,7 @@ h1{
         height:80%;
         max-width:1350px;
         max-height:700px;
+        min-height:700px !important;
         display:flex;
         justify-content: center;
         align-items: center;
@@ -401,7 +402,7 @@ h1{
                 .dayBox{
                     background-color:#A5A5A5;
                 }
-                .day{
+                .date{
                     margin-top:7px;
                 }
             }
@@ -486,6 +487,9 @@ h1{
             justify-content: space-between;
         }
     }
+    .movieDescriction{
+        line-height:25px;
+    }
 }
 
 .activeModal > div{
@@ -495,6 +499,17 @@ h1{
     background-color:$orange !important;
     &:before{
         color:$orange !important;
+    }
+    &:after{
+        opacity:0;
+        position:absolute;
+        content:'';
+        background:$orange;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        border-radius: 50px;
     }
 }
 .select{
@@ -615,8 +630,31 @@ h1{
 .activeProcess{
     transform:translateX(-400px) !important;
     opacity:0 !important;
+    pointer-events: none !important;
 }
 .activeShow{
     transform: translateX(0) !important;
     opacity:1 !important;
+}
+.blink{
+    &:after{
+        animation-name: dotBlink;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes dotBlink {
+    0%{
+        background-color:white;
+        opacity:1;
+    }
+    50%{
+        background-color:$orange;
+        opacity:1;
+    }
+    100%{
+        background-color:white;
+        opacity:1;
+    }
 }

@@ -273,6 +273,7 @@ h1:before {
   height: 80%;
   max-width: 1350px;
   max-height: 700px;
+  min-height: 700px !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -513,7 +514,7 @@ h1:before {
   background-color: #A5A5A5;
 }
 
-.modal .contentBox .bookingDateContainer .dateContainer .day {
+.modal .contentBox .bookingDateContainer .dateContainer .date {
   margin-top: 7px;
 }
 
@@ -633,6 +634,10 @@ h1:before {
           justify-content: space-between;
 }
 
+.modal .movieDescriction {
+  line-height: 25px;
+}
+
 .activeModal > div {
   -webkit-transform: scale(1) !important;
           transform: scale(1) !important;
@@ -644,6 +649,18 @@ h1:before {
 
 .status:before {
   color: #f96400 !important;
+}
+
+.status:after {
+  opacity: 0;
+  position: absolute;
+  content: '';
+  background: #f96400;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
 }
 
 .select {
@@ -790,11 +807,51 @@ h1:before {
   -webkit-transform: translateX(-400px) !important;
           transform: translateX(-400px) !important;
   opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .activeShow {
   -webkit-transform: translateX(0) !important;
           transform: translateX(0) !important;
   opacity: 1 !important;
+}
+
+.blink:after {
+  -webkit-animation-name: dotBlink;
+          animation-name: dotBlink;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes dotBlink {
+  0% {
+    background-color: white;
+    opacity: 1;
+  }
+  50% {
+    background-color: #f96400;
+    opacity: 1;
+  }
+  100% {
+    background-color: white;
+    opacity: 1;
+  }
+}
+
+@keyframes dotBlink {
+  0% {
+    background-color: white;
+    opacity: 1;
+  }
+  50% {
+    background-color: #f96400;
+    opacity: 1;
+  }
+  100% {
+    background-color: white;
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=common.css.map */

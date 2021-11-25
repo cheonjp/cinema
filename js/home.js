@@ -309,7 +309,7 @@ function createInfoModal(targetMovie){
                     <h2 class="movieTitle">${title}</h2>
                 </div>
                 <div class="navigation">
-                    <div class="process movie status"></div>
+                    <div class="process movie status blink"></div>
                     <div class="process"></div>
                     <div class="process"></div>
                     <div class="process"></div>
@@ -344,28 +344,28 @@ function createInfoModal(targetMovie){
                             </div>
                             <div class="dateContainer">
                                 <div class="dateBox">
-                                    <span class="date select">Mon</span>
-                                    <span class="date">Tus</span>
-                                    <span class="date">Wed</span>
-                                    <span class="date">Thu</span>
-                                    <span class="date">Fri</span>
-                                    <span class="date">Sat</span>
-                                    <span class="date">Sun</span>
-                                    <span class="date">Mon</span>
-                                    <span class="date">Tus</span>
-                                    <span class="date">Wed</span>
+                                    <span class="day select">Mon</span>
+                                    <span class="day">Tus</span>
+                                    <span class="day">Wed</span>
+                                    <span class="day">Thu</span>
+                                    <span class="day">Fri</span>
+                                    <span class="day">Sat</span>
+                                    <span class="day">Sun</span>
+                                    <span class="day">Mon</span>
+                                    <span class="day">Tus</span>
+                                    <span class="day">Wed</span>
                                 </div>
                                 <div class="dayBox">
-                                    <span class="day select">1</span>
-                                    <span class="day">2</span>
-                                    <span class="day">3</span>
-                                    <span class="day">4</span>
-                                    <span class="day">5</span>
-                                    <span class="day">6</span>
-                                    <span class="day">7</span>
-                                    <span class="day">8</span>
-                                    <span class="day">9</span>
-                                    <span class="day">10</span>
+                                    <span class="date select">1</span>
+                                    <span class="date">2</span>
+                                    <span class="date">3</span>
+                                    <span class="date">4</span>
+                                    <span class="date">5</span>
+                                    <span class="date">6</span>
+                                    <span class="date">7</span>
+                                    <span class="date">8</span>
+                                    <span class="date">9</span>
+                                    <span class="date">10</span>
                                 </div>
                             </div>
                         </div>
@@ -472,20 +472,24 @@ function createInfoModal(targetMovie){
     setTimeout(function(){
         targetContent.classList.add('activeModal')
     },10)
-    changeBtn('movie')
     createTrailer(targetMovie)
     ticketing(targetMovie)
+    processingBooking()
 }
 
-const changeBtn = (process)=>{
+
+
+const changeBtn = (processStatus)=>{
     const backBtn = document.querySelector('.modalContainer .backBtn')
     const nextBtn = document.querySelector('.modalContainer .nextBtn')
     const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
     const trailerBtn = document.querySelector('.modalContainer .grayBtn')
-    if(process ==='movie'){
+    if(processStatus ==='movie'){
         backBtn.classList.add('displayNone')
         nextBtn.classList.add('displayNone')
-    }else{
+        ticketBtn.classList.remove('displayNone')
+        trailerBtn.classList.remove('displayNone')
+    }else if(processStatus !== 'movie'){
         ticketBtn.classList.add('displayNone')
         trailerBtn.classList.add('displayNone')
         backBtn.classList.remove('displayNone')
@@ -493,35 +497,125 @@ const changeBtn = (process)=>{
     }
 }
 
-const ticketing=(process)=>{
+const ticketing=()=>{
+    let takingProcessBack =false
+    let processStatus = 'movie'
     const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
-    const movieInfo = document.querySelector('.movieInfoBox')
-    const bookingBox = document.querySelector('.bookingBox')
+    const backBtn = document.querySelector('.modal .backBtn')
     ticketBtn.onclick=()=>{
-        movieInfo.classList.add('activeProcess')
-        movieInfo.ontransitionend=()=>{
-            movieInfo.classList.add('displayNone')
-            bookingBox.classList.remove('displayNone')
-            setTimeout(function(){
-                bookingBox.classList.add('activeShow')
-            },20)
-            changeBtn('booking')
-            activeNavi('booking')
+        if(processStatus === 'movie'){
+            takingProcessBack = false
+            if(takingProcessBack === false){
+                processStatus = 'select_time_seat'
+                activeNavi(processStatus,takingProcessBack)
+            }
         }
     }
+    backBtn.onclick=()=>{
+        if(processStatus ==='select_time_seat'){
+            takingProcessBack = true
+            processStatus = 'movie'
+            activeNavi(processStatus,takingProcessBack)
+        }
+    }
+    changeBtn(processStatus)
 }
 
-let timing = 0
-function activeNavi(status){
+
+
+function activeNavi(status,backup){
+    let timing = 0
     const  statusDots = document.querySelectorAll('.process')
-    for(let i=0;i<5; i++){
+    if(status === 'movie' && backup === true){
+        statusDots.forEach((dot)=>{
+            dot.classList.remove('status')
+        })
+        statusDots[0].classList.add('status')
+    }
+    if(status ==='select_time_seat' && backup === false){
+        for(let i=0;i<5; i++){
+            setTimeout(()=>{
+                statusDots[i].classList.add('status')
+            },timing)
+            timing+=50
+        }
+    }
+    changeBtn(status)
+    changeInfo(status, backup)
+    blinkStatus(status)
+}
+
+function blinkStatus(status){
+    const dots = document.querySelectorAll('.process')
+    dots.forEach((dot)=>{
+        dot.classList.remove('blink')
+        if(status === 'movie'){
+            if(dot.classList.contains('movie')){
+                dot.classList.add('blink')
+            }
+        }
+        if(status ==='select_time_seat'){
+            if(dot.classList.contains('selection')){
+                dot.classList.add('blink')
+            }
+        }
+    })
+}
+
+function changeInfo(status, backup){
+    const movieInfo = document.querySelector('.movieInfoBox')
+    const bookingBox = document.querySelector('.bookingBox')
+    if(status ==='select_time_seat' && backup === false){
+        movieInfo.classList.add('activeProcess')
         setTimeout(()=>{
-            statusDots[i].classList.add('status')
-        },timing)
-        timing+=50
+            movieInfo.classList.add('displayNone')
+            bookingBox.classList.remove('displayNone')
+        },300)
+        setTimeout(()=>{
+            bookingBox.className = 'bookingBox activeShow'
+        },330)
+    }
+    if(status === 'movie' && backup === true){
+        bookingBox.classList.remove('activeShow')
+        setTimeout(()=>{
+            bookingBox.classList.add('displayNone')
+            movieInfo.classList.remove('displayNone')
+            setTimeout(()=>{
+                movieInfo.classList.remove('activeProcess')
+            },320)
+        },300)
     }
 }
 
+function processingBooking(){
+    let index = -1
+    const bookingMonth = document.querySelector('.currentMonth')
+    const bookingDate = document.querySelectorAll('.date')
+    const bookingDay = document.querySelectorAll('.day')
+
+    const currentYear = new Date().getFullYear()
+    const currentMonth = new Date().getMonth()
+    bookingMonth.innerText = currentYear + '.' + currentMonth
+    bookingDate.forEach((date)=>{
+        index+=1
+        const setDate = new Date().getDate() + index
+        date.innerText = setDate
+    })
+    index = -1
+    bookingDay.forEach((day)=>{
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+        index +=1
+        const currentDay = new Date().getDay()
+        if((currentDay+index) > 6){
+            index = -currentDay
+        }
+        const calculatedIndex = index + currentDay
+        
+        day.innerText = days[calculatedIndex]
+
+        
+    })
+}
 
 
 
