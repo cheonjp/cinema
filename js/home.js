@@ -344,28 +344,28 @@ function createInfoModal(targetMovie){
                             </div>
                             <div class="dateContainer">
                                 <div class="dateBox">
-                                    <span class="day select">Mon</span>
-                                    <span class="day">Tus</span>
-                                    <span class="day">Wed</span>
-                                    <span class="day">Thu</span>
-                                    <span class="day">Fri</span>
-                                    <span class="day">Sat</span>
-                                    <span class="day">Sun</span>
-                                    <span class="day">Mon</span>
-                                    <span class="day">Tus</span>
-                                    <span class="day">Wed</span>
+                                    <span class="day select" data-booking-date="0">Mon</span>
+                                    <span class="day" data-booking-date="1">Tus</span>
+                                    <span class="day" data-booking-date="2">Wed</span>
+                                    <span class="day" data-booking-date="3">Thu</span>
+                                    <span class="day" data-booking-date="4">Fri</span>
+                                    <span class="day" data-booking-date="5">Sat</span>
+                                    <span class="day" data-booking-date="6">Sun</span>
+                                    <span class="day" data-booking-date="7">Mon</span>
+                                    <span class="day" data-booking-date="8">Tus</span>
+                                    <span class="day" data-booking-date="9">Wed</span>
                                 </div>
                                 <div class="dayBox">
-                                    <span class="date select">1</span>
-                                    <span class="date">2</span>
-                                    <span class="date">3</span>
-                                    <span class="date">4</span>
-                                    <span class="date">5</span>
-                                    <span class="date">6</span>
-                                    <span class="date">7</span>
-                                    <span class="date">8</span>
-                                    <span class="date">9</span>
-                                    <span class="date">10</span>
+                                    <span class="date select" data-booking-date="0">1</span>
+                                    <span class="date" data-booking-date="1">2</span>
+                                    <span class="date" data-booking-date="2">3</span>
+                                    <span class="date" data-booking-date="3">4</span>
+                                    <span class="date" data-booking-date="4">5</span>
+                                    <span class="date" data-booking-date="5">6</span>
+                                    <span class="date" data-booking-date="6">7</span>
+                                    <span class="date" data-booking-date="7">8</span>
+                                    <span class="date" data-booking-date="8">9</span>
+                                    <span class="date" data-booking-date="9">10</span>
                                 </div>
                             </div>
                         </div>
@@ -475,6 +475,7 @@ function createInfoModal(targetMovie){
     createTrailer(targetMovie)
     ticketing(targetMovie)
     processingBooking()
+    selectOption()
 }
 
 
@@ -587,6 +588,7 @@ function changeInfo(status, backup){
     }
 }
 
+
 function processingBooking(){
     let index = -1
     const bookingMonth = document.querySelector('.currentMonth')
@@ -598,7 +600,12 @@ function processingBooking(){
     bookingMonth.innerText = currentYear + '.' + currentMonth
     bookingDate.forEach((date)=>{
         index+=1
-        const setDate = new Date().getDate() + index
+        const currentDate = new Date().getDate()
+        let setDate = currentDate + index
+        if(setDate > 31){
+            setDate = setDate - 31
+
+        }
         date.innerText = setDate
     })
     index = -1
@@ -612,10 +619,118 @@ function processingBooking(){
         const calculatedIndex = index + currentDay
         
         day.innerText = days[calculatedIndex]
+    })
 
+    const hours =[]
+    const minutes = []
+    let timeIndex =0
+    const timeBtn = document.querySelectorAll('.timeBtn')
+    timeBtn.forEach((btn)=>{
+        let hour = Math.floor(Math.random() * 24)
+        let minute = Math.floor(Math.random()*60)
+        hours.push(hour)
+        hours.sort((a,b)=>{
+            return a - b
+        })
+        minutes.push(minute)
+    })
+    timeBtn.forEach((btn)=>{
+        btn.classList.remove('activeOption')
+        const finalHour = hours[timeIndex].toString()
+        if(finalHour.length === 1){
+            btn.innerText ='0'+hours[timeIndex]+' : '
+        }else if(finalHour.length ===2){
+            btn.innerText = hours[timeIndex]+' : '
+        }
         
+        const finalMinute = minutes[timeIndex].toString()
+        if(finalMinute.length === 1){
+            btn.innerText+='0'+finalMinute
+        }else if(finalMinute.length ===2){
+            btn.innerText+=' '+finalMinute
+        }
+        timeIndex++
+
+        const currentTime = ()=>{
+            const currentHour = new Date().getHours()
+            const currentMin = new Date().getMinutes()
+            return (currentHour.toString() + currentMin.toString())
+        }
+        const btnText = btn.innerText
+        const onlyMovieTime = btnText.replace(':','')
+        const movieTime = onlyMovieTime.replace(/ /g,'')
+        const today = document.getElementsByClassName('date')[0]
+        if(movieTime < currentTime() && today.classList.contains('select')){
+            btn.classList.add('unavailableTime')
+        }else{
+            btn.classList.remove('unavailableTime')
+        }
+
+        const seats = document.querySelectorAll('.seat')
+        seats.forEach((seat)=>{
+            const seatNum = Math.floor(Math.random()*120)
+            const calculatedSeat = seatNum % 4
+            if(calculatedSeat === 0){
+                seat.textContent='Sold Out'
+                seat.previousElementSibling.classList.add('soldOut')
+            }else{
+                seat.textContent =seatNum +' tickets'
+                seat.style.color='white'
+                seat.previousElementSibling.classList.remove('soldOut')
+            }
+            if(seatNum < 20 && !seat.classList.contains('unavailableTime') && !seat.classList.contains('soldOut')){
+                seat.classList.add('activeHurryUp')
+            }else{
+                seat.classList.remove('activeHurryUp')
+            }
+            
+        })
     })
 }
+
+function selectOption(){
+    let dateIndex = 0
+    const movieTimeBtn = document.querySelectorAll('.timeBtn')
+    const dateButtons = document.querySelectorAll('.date')
+    const dayButtons = document.querySelectorAll('.day')
+    movieTimeBtn.forEach((btn)=>{
+        btn.addEventListener('click',(e)=>{
+            if(!e.target.classList.contains('unavailableTime')){
+                movieTimeBtn.forEach((btn)=>{
+                    btn.classList.remove('activeOption')
+                })
+                if(!e.target.classList.contains('soldOut')){
+                    e.target.classList.add('activeOption')
+                }
+            }
+        })
+    })
+    dateButtons.forEach((eachBtn)=>{
+        selectDate(eachBtn,dayButtons)
+    })
+    dayButtons.forEach((eachBtn)=>{
+        selectDate(eachBtn,dateButtons)
+    })
+
+
+    function selectDate(targetBtn,siblingBtn){
+        targetBtn.addEventListener('click',()=>{
+            dayButtons.forEach((day)=>{
+                day.classList.remove('select')
+            })
+            dateButtons.forEach((date)=>{
+                date.classList.remove('select')
+            })
+            const dataset = targetBtn.dataset.bookingDate
+            dateIndex = dataset
+            targetBtn.classList.add('select')
+            siblingBtn[dateIndex].classList.add('select')
+            processingBooking()
+        })
+    }
+    
+}
+
 
 
 
