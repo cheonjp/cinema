@@ -434,7 +434,7 @@ h1:before {
 }
 
 .modal .contentBox .process.selection:before {
-  content: 'Select time & Seat';
+  content: 'Select time & seat';
   -webkit-transform: translateX(-55px);
           transform: translateX(-55px);
 }
@@ -595,6 +595,14 @@ h1:before {
   -webkit-transform: translateY(1px);
           transform: translateY(1px);
   margin-right: 10px;
+}
+
+.modal .contentBox .seatColumn .seatGradeBox .gradeBox.yellow {
+  background-color: #f1ca0b;
+}
+
+.modal .contentBox .seatColumn .seatGradeBox .gradeBox.red {
+  background-color: red;
 }
 
 .modal .contentBox .seatColumn .priceBox {
@@ -954,7 +962,7 @@ h1:before {
 }
 
 .soldOut + div {
-  color: #5a0000 !important;
+  color: #810000 !important;
 }
 
 .activeHurryUp {
@@ -964,6 +972,29 @@ h1:before {
           animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
+  position: relative;
+}
+
+.activeHurryUp:before {
+  position: absolute;
+  bottom: -30px;
+  right: 0px;
+  content: 'Sold out soon';
+  background: white;
+  padding: 5px 10px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+.activeHurryUp:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -2px;
+  right: 50px;
+  content: '';
+  border: 7px solid;
+  border-color: transparent transparent white transparent;
 }
 
 @-webkit-keyframes hurryup {
@@ -988,5 +1019,67 @@ h1:before {
   100% {
     color: white;
   }
+}
+
+.seatMapModal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.seatMapModal .seatMapContainer {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  padding: 30px 40px;
+}
+
+.seatMapModal .screen {
+  border: 1px solid black;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.seatMapContainer .seat {
+  border: 1px solid black;
+  width: 32px;
+  padding: 3px;
+  display: inline-block;
+  text-align: center;
+  white-space: wrap;
+}
+
+.passage {
+  width: 119px;
+  text-align: center;
+  display: inline-block;
+}
+
+.seatLine {
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.premiumSeat {
+  background-color: #f1ca0b;
+}
+
+.unavailableSeat {
+  background-color: red !important;
 }
 /*# sourceMappingURL=common.css.map */

@@ -427,8 +427,8 @@ function createInfoModal(targetMovie){
                                 </div>
                                 <div class="seatColumn">
                                     <div class="seatGradeBox">
-                                        <div class="gradeBox"></div>
-                                        <div>Normal seats</div>
+                                        <div class="gradeBox yellow"></div>
+                                        <div>Premium seats</div>
                                     </div>
                                     <div class="priceBox">
                                         <div>Price: <span class="price">12</span>$</div>
@@ -442,8 +442,8 @@ function createInfoModal(targetMovie){
                                 </div>
                                 <div class="seatColumn lastPriceBox">
                                     <div class="seatGradeBox">
-                                        <div class="gradeBox"></div>
-                                        <div>Normal seats</div>
+                                        <div class="gradeBox red"></div>
+                                        <div>Unavailable seats</div>
                                     </div>
                                     <div class="priceBox">
                                         <div>Price: <span class="price">12</span>$</div>
@@ -668,7 +668,7 @@ function processingBooking(){
 
         const seats = document.querySelectorAll('.seat')
         seats.forEach((seat)=>{
-            const seatNum = Math.floor(Math.random()*120)
+            const seatNum = Math.floor(Math.random()*189)
             const calculatedSeat = seatNum % 4
             if(calculatedSeat === 0){
                 seat.textContent='Sold Out'
@@ -678,7 +678,7 @@ function processingBooking(){
                 seat.style.color='white'
                 seat.previousElementSibling.classList.remove('soldOut')
             }
-            if(seatNum < 20 && !seat.classList.contains('unavailableTime') && !seat.classList.contains('soldOut')){
+            if(seatNum < 20 && !seat.previousElementSibling.classList.contains('unavailableTime') && !seat.previousElementSibling.classList.contains('soldOut')){
                 seat.classList.add('activeHurryUp')
             }else{
                 seat.classList.remove('activeHurryUp')
@@ -728,10 +728,129 @@ function selectOption(){
             processingBooking()
         })
     }
+    findingAvailableSeat()
+}
+
+function findingAvailableSeat(){
+    const seatAlphabets=['A','B','C','D','E','F','G','H','I']
+    const searchingSeatBtn = document.querySelector('#searchSeat')
+    const parentElement = document.querySelector('.modalContainer')
+    const modal = document.createElement('div')
+
+    searchingSeatBtn.addEventListener('click',()=>{
+        let totalLine = ''
+        seatAlphabets.map((eachLine)=>{
+            let lineSeat = `
+                <div class="seatLine">
+                    <span class="seat" data-seat="${eachLine}1">1</span>
+                    <span class="seat" data-seat="${eachLine}2">2</span>
+                    <span class="seat" data-seat="${eachLine}3">3</span>
+                    <span class="seat" data-seat="${eachLine}4">4</span>
+                    <span class="passage">${eachLine}</span>
+                    <span class="seat" data-seat="${eachLine}5">5</span>
+                    <span class="seat" data-seat="${eachLine}6">6</span>
+                    <span class="seat" data-seat="${eachLine}7">7</span>
+                    <span class="seat" data-seat="${eachLine}8">8</span>
+                    <span class="seat" data-seat="${eachLine}9">9</span>
+                    <span class="seat" data-seat="${eachLine}10">10</span>
+                    <span class="seat" data-seat="${eachLine}11">11</span>
+                    <span class="seat" data-seat="${eachLine}12">12</span>
+                    <span class="seat" data-seat="${eachLine}13">13</span>
+                    <span class="seat" data-seat="${eachLine}14">14</span>
+                    <span class="seat" data-seat="${eachLine}15">15</span>
+                    <span class="seat" data-seat="${eachLine}16">16</span>
+                    <span class="seat" data-seat="${eachLine}17">17</span>
+                    <span class="passage">${eachLine}</span>
+                    <span class="seat" data-seat="${eachLine}18">18</span>
+                    <span class="seat" data-seat="${eachLine}19">19</span>
+                    <span class="seat" data-seat="${eachLine}20">20</span>
+                    <span class="seat" data-seat="${eachLine}21">21</span>
+                </div>
+            `
+            totalLine += lineSeat
+        })
+        modal.innerHTML = `
+            <div class="seatMapContainer">
+                <div class="screen">Screen</div>
+                ${totalLine}
+            </div>
+        `
+        modal.classList.add('seatMapModal')
+        parentElement.appendChild(modal)
+        selectingSeat()
+        updatePremiumSeats()
+        updateAvailableSeats()
+    })
     
+}
+function updatePremiumSeats(){
+    const seats = document.querySelectorAll('.seat')
+    seats.forEach((seat)=>{
+        const seatData = seat.dataset.seat
+        const textData = `${seatData}`
+        if(textData.includes('C')||textData.includes('D')||textData.includes('E')||textData.includes('F')||textData.includes('G')){
+            const dataNumber = textData.slice(1,3)
+            if(dataNumber > 8 && dataNumber < 14){
+                seat.classList.add('premiumSeat')
+            }
+        }
+    })
+}
+function selectingSeat(){
+    const seats = document.querySelectorAll('.seat')
+    seats.forEach((seat)=>{
+        seat.addEventListener('click',()=>{
+
+        })
+    })
+}
+
+function updateAvailableSeats(){
+    const leftTickets = document.querySelectorAll('.timeBtnBox .seat')
+    const seats = document.querySelectorAll('.seatMapContainer .seat')
+    leftTickets.forEach((ticket)=>{
+        const timeBtn = ticket.previousElementSibling
+        if(timeBtn.classList.contains('activeOption')){
+            let occupiedSeat = parseInt(ticket.textContent)
+            let availableSeat = seats.length - occupiedSeat
+
+            const randomSeats =[]
+            for(let i=0; i<availableSeat; i++){
+                generateNumber()
+                test(generateNumber())
+
+                console.log(randomSeats)
+                randomSeats.forEach((seatNum)=>{
+                    seats[seatNum].classList.add('unavailableSeat')
+                })
+                
+                const red = document.querySelectorAll('.unavailableSeat')
+                // console.log(red.length)
+                
+            }
+            function test(seatNum){
+                if(randomSeats.indexOf(seatNum)  <0){
+                    console.log(seatNum)
+                    return randomSeats.push(seatNum)
+                }else if(randomSeats.indexOf(seatNum) >=0){
+                    debugger
+                    generateNumber()
+                    test(generateNumber())
+                }
+            }
+            function generateNumber(){
+                let randomNumber = Math.floor(Math.random()*seats.length)
+                return randomNumber
+            }
+            
+        }
+    })
 }
 
 
+// for test
+document.getElementsByClassName('orangeBtn')[0].click()
+document.getElementById('searchSeat').click()
 
 
 
