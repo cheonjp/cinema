@@ -412,17 +412,17 @@ function createInfoModal(targetMovie){
                                         <div>Price: <span class="price">12</span>$</div>
                                     </div>
                                     <select id="people" name="" id="">
-                                        <option value="People">1</option>
-                                        <option value="People">2</option>
-                                        <option value="People">3</option>
-                                        <option value="People">4</option>
-                                        <option value="People">5</option>
-                                        <option value="People">6</option>
-                                        <option value="People">7</option>
-                                        <option value="People">8</option>
-                                        <option value="People">9</option>
-                                        <option value="People">10</option>
-                                        <option value="People" selected disabled>People</option>
+                                        <option value="1" class="optionPeople">1</option>
+                                        <option value="2" class="optionPeople">2</option>
+                                        <option value="3" class="optionPeople">3</option>
+                                        <option value="4" class="optionPeople">4</option>
+                                        <option value="5" class="optionPeople">5</option>
+                                        <option value="6" class="optionPeople">6</option>
+                                        <option value="7" class="optionPeople">7</option>
+                                        <option value="8" class="optionPeople">8</option>
+                                        <option value="9" class="optionPeople">9</option>
+                                        <option value="10" class="optionPeople">10</option>
+                                        <option value="selected" selected disabled>People</option>
                                     </select>
                                 </div>
                                 <div class="seatColumn">
@@ -476,6 +476,18 @@ function createInfoModal(targetMovie){
     ticketing(targetMovie)
     processingBooking()
     selectOption()
+    selectPeople()
+}
+
+let peopleNumber
+function selectPeople(){
+    peopleDropBox = document.querySelector('#people')
+    peopleOptions = document.querySelectorAll('#people .optionPeople')
+    peopleOptions.forEach((option)=>{
+        option.addEventListener('click',()=>{
+            return peopleNumber = option.value
+        })
+    })
 }
 
 
@@ -590,6 +602,7 @@ function changeInfo(status, backup){
 
 
 function processingBooking(){
+    peopleNumber = undefined
     let index = -1
     const bookingMonth = document.querySelector('.currentMonth')
     const bookingDate = document.querySelectorAll('.date')
@@ -739,48 +752,69 @@ function findingAvailableSeat(){
 
     searchingSeatBtn.addEventListener('click',()=>{
         let totalLine = ''
-        seatAlphabets.map((eachLine)=>{
-            let lineSeat = `
-                <div class="seatLine">
-                    <span class="seat" data-seat="${eachLine}1">1</span>
-                    <span class="seat" data-seat="${eachLine}2">2</span>
-                    <span class="seat" data-seat="${eachLine}3">3</span>
-                    <span class="seat" data-seat="${eachLine}4">4</span>
-                    <span class="passage">${eachLine}</span>
-                    <span class="seat" data-seat="${eachLine}5">5</span>
-                    <span class="seat" data-seat="${eachLine}6">6</span>
-                    <span class="seat" data-seat="${eachLine}7">7</span>
-                    <span class="seat" data-seat="${eachLine}8">8</span>
-                    <span class="seat" data-seat="${eachLine}9">9</span>
-                    <span class="seat" data-seat="${eachLine}10">10</span>
-                    <span class="seat" data-seat="${eachLine}11">11</span>
-                    <span class="seat" data-seat="${eachLine}12">12</span>
-                    <span class="seat" data-seat="${eachLine}13">13</span>
-                    <span class="seat" data-seat="${eachLine}14">14</span>
-                    <span class="seat" data-seat="${eachLine}15">15</span>
-                    <span class="seat" data-seat="${eachLine}16">16</span>
-                    <span class="seat" data-seat="${eachLine}17">17</span>
-                    <span class="passage">${eachLine}</span>
-                    <span class="seat" data-seat="${eachLine}18">18</span>
-                    <span class="seat" data-seat="${eachLine}19">19</span>
-                    <span class="seat" data-seat="${eachLine}20">20</span>
-                    <span class="seat" data-seat="${eachLine}21">21</span>
+        const selectedTime = document.querySelector('.activeOption')
+        if(peopleNumber !==undefined && selectedTime !== null){
+            seatAlphabets.map((eachLine)=>{
+                let lineSeat = `
+                    <div class="seatLine">
+                        <span class="seat" data-seat="${eachLine}1">1</span>
+                        <span class="seat" data-seat="${eachLine}2">2</span>
+                        <span class="seat" data-seat="${eachLine}3">3</span>
+                        <span class="seat" data-seat="${eachLine}4">4</span>
+                        <span class="passage">${eachLine}</span>
+                        <span class="seat" data-seat="${eachLine}5">5</span>
+                        <span class="seat" data-seat="${eachLine}6">6</span>
+                        <span class="seat" data-seat="${eachLine}7">7</span>
+                        <span class="seat" data-seat="${eachLine}8">8</span>
+                        <span class="seat" data-seat="${eachLine}9">9</span>
+                        <span class="seat" data-seat="${eachLine}10">10</span>
+                        <span class="seat" data-seat="${eachLine}11">11</span>
+                        <span class="seat" data-seat="${eachLine}12">12</span>
+                        <span class="seat" data-seat="${eachLine}13">13</span>
+                        <span class="seat" data-seat="${eachLine}14">14</span>
+                        <span class="seat" data-seat="${eachLine}15">15</span>
+                        <span class="seat" data-seat="${eachLine}16">16</span>
+                        <span class="seat" data-seat="${eachLine}17">17</span>
+                        <span class="passage">${eachLine}</span>
+                        <span class="seat" data-seat="${eachLine}18">18</span>
+                        <span class="seat" data-seat="${eachLine}19">19</span>
+                        <span class="seat" data-seat="${eachLine}20">20</span>
+                        <span class="seat" data-seat="${eachLine}21">21</span>
+                    </div>
+                `
+                totalLine += lineSeat
+            })
+            modal.innerHTML = `
+                <div class="seatMapContainer">
+                    <div class="screen">Screen</div>
+                    ${totalLine}
                 </div>
             `
-            totalLine += lineSeat
-        })
-        modal.innerHTML = `
-            <div class="seatMapContainer">
-                <div class="screen">Screen</div>
-                ${totalLine}
-            </div>
-        `
-        modal.classList.add('seatMapModal')
-        parentElement.appendChild(modal)
-        selectingSeat()
-        updatePremiumSeats()
-        updateAvailableSeats()
+            modal.classList.add('seatMapModal')
+            parentElement.appendChild(modal)
+            updatePremiumSeats()
+            updateAvailableSeats()
+        } 
+        if(selectedTime === null){
+            createAlert('.selectTimeContainer','Select movie time','fingerLeft')
+        }
+        if(peopleNumber === undefined){
+            createAlert('.seatContainer', 'Select people','fingerUp')
+        }
     })
+    function createAlert(targetClass, targetMessage,className){
+        const targetBox = document.querySelector(targetClass)
+        const alertElement = document.createElement('div')
+        alertElement.innerHTML = `
+                <img src="../img/finger.svg">
+                <span>${targetMessage}</span>
+        `
+        alertElement.classList.add('alertBox',className)
+        targetBox.appendChild(alertElement)
+        setTimeout(()=>{
+            targetBox.removeChild(alertElement)
+        },3000)
+    }
     
 }
 function updatePremiumSeats(){
@@ -796,14 +830,6 @@ function updatePremiumSeats(){
         }
     })
 }
-function selectingSeat(){
-    const seats = document.querySelectorAll('.seat')
-    seats.forEach((seat)=>{
-        seat.addEventListener('click',()=>{
-
-        })
-    })
-}
 
 function updateAvailableSeats(){
     const leftTickets = document.querySelectorAll('.timeBtnBox .seat')
@@ -817,25 +843,20 @@ function updateAvailableSeats(){
             const randomSeats =[]
             for(let i=0; i<availableSeat; i++){
                 generateNumber()
-                test(generateNumber())
+                calculatingSeat(generateNumber())
 
-                console.log(randomSeats)
                 randomSeats.forEach((seatNum)=>{
                     seats[seatNum].classList.add('unavailableSeat')
                 })
                 
-                const red = document.querySelectorAll('.unavailableSeat')
-                // console.log(red.length)
                 
             }
-            function test(seatNum){
+            function calculatingSeat(seatNum){
                 if(randomSeats.indexOf(seatNum)  <0){
-                    console.log(seatNum)
                     return randomSeats.push(seatNum)
                 }else if(randomSeats.indexOf(seatNum) >=0){
-                    debugger
                     generateNumber()
-                    test(generateNumber())
+                    calculatingSeat(generateNumber())
                 }
             }
             function generateNumber(){
@@ -845,12 +866,24 @@ function updateAvailableSeats(){
             
         }
     })
+    selectingSeat()
+}
+
+function selectingSeat(){
+    const seats = document.querySelectorAll('.seatMapModal .seat')
+    seats.forEach((seat)=>{
+        if(!seat.classList.contains('unavailableSeat')){
+            seat.addEventListener('click',()=>{
+                seat.classList.toggle('selected')
+            })
+        }
+    })
 }
 
 
 // for test
 document.getElementsByClassName('orangeBtn')[0].click()
-document.getElementById('searchSeat').click()
+// document.getElementById('searchSeat').click()
 
 
 

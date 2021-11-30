@@ -418,6 +418,7 @@ h1{
             font-size:$f-18;
             justify-content: center;
             margin-bottom:25px;
+            position:relative;
             span:last-child{
                 transform: translateY(2px);
                 margin-left:10px;
@@ -443,6 +444,7 @@ h1{
         .seatContainer{
             display:flex;
             justify-content: space-between;
+            position:relative;
         }
         .seatColumn{
             .seatGradeBox{
@@ -804,6 +806,7 @@ h1{
     display:inline-block;
     text-align: center;
     white-space: wrap;
+    cursor:pointer;
 }
 .passage{
     width:119px;
@@ -818,5 +821,115 @@ h1{
     background-color:$yellow;
 }
 .unavailableSeat{
-    background-color:red !important;
+    background-color:rgb(255, 0, 0) !important;
+    opacity:.4;
+    position:relative;
+    // overflow:hidden;
+    &:before{
+        position: absolute;
+        top: 8px;
+        left: -15px;
+        width: 130%;
+        height: 130%;
+        border: solid black;
+        border-width: 1px 0 0 0;
+        content: '';
+        transform: rotate(40deg);
+        pointer-events: none;
+        // overflow:hidden;
+    }
+    &:after{
+        position: absolute;
+        top: 8px;
+        left: 7px;
+        width: 130%;
+        height: 130%;
+        border: solid black;
+        border-width: 1px 0 0 0;
+        content: '';
+        transform: rotate(-40deg);
+        overflow:hidden;
+        pointer-events: none;
+    }
+}
+.selected{
+    position:relative;
+    &:after{
+        position:absolute;
+        content:'';
+        background-color:rgba(36, 95, 172, 0.5);
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+    }
+}
+.alertBox{
+    position:absolute;
+    background-color:white;
+    color:red;
+    padding:5px 10px;
+    border-radius: 5px;
+    display:flex;
+    align-items: center;
+
+    img{
+        // width:25px;
+        // height:25px;
+        // margin-right:10px;
+        // animation-name:alertBox;
+        // animation-duration: 1s;
+        // animation-iteration-count: 3;
+    }
+}
+.fingerLeft{
+    right: 55px;
+    top:0;
+    img{
+        width:25px;
+        height:25px;
+        margin-right:10px;
+        animation-name:alertBox;
+        animation-duration: 1s;
+        animation-iteration-count: 3;
+    }
+}
+.fingerUp{
+    left: 0px;
+    top:125px;
+    img{
+        width:25px;
+        height:25px;
+        margin-right:10px;
+        animation-name:alertBoxUp;
+        animation-duration: 1s;
+        animation-iteration-count: 3;
+        transform:rotate(90deg);
+    }
+}
+.selectTimeContainer {
+    position:relative;
+
+}
+@keyframes alertBox {
+    0%{
+        transform: translateX(-5px);
+    }
+    50%{
+        transform: translateX(0px);
+    }
+    100%{
+        transform: translateX(-5px);
+    }
+}
+@keyframes alertBoxUp {
+    0%{
+        transform: translateY(-5px) rotate(90deg);
+    }
+    50%{
+        transform: translateY(0px) rotate(90deg);
+    }
+    100%{
+        transform: translateY(-5px) rotate(90deg);
+    }
 }
