@@ -411,7 +411,7 @@ function createInfoModal(targetMovie){
                                     <div class="priceBox">
                                         <div>Price: <span class="price">12</span>$</div>
                                     </div>
-                                    <select id="people" name="" id="">
+                                    <select id="people" name="peopleNumber">
                                         <option value="1" class="optionPeople">1</option>
                                         <option value="2" class="optionPeople">2</option>
                                         <option value="3" class="optionPeople">3</option>
@@ -481,14 +481,16 @@ function createInfoModal(targetMovie){
 
 let peopleNumber
 function selectPeople(){
+    peopleNumber = undefined
     peopleDropBox = document.querySelector('#people')
     peopleOptions = document.querySelectorAll('#people .optionPeople')
-    peopleOptions.forEach((option)=>{
-        option.addEventListener('click',()=>{
-            return peopleNumber = option.value
-        })
+    peopleDropBox.addEventListener('change',()=>{
+        console.log(peopleDropBox.value)
+        return peopleNumber = peopleDropBox.value
     })
 }
+
+
 
 
 
@@ -602,7 +604,6 @@ function changeInfo(status, backup){
 
 
 function processingBooking(){
-    peopleNumber = undefined
     let index = -1
     const bookingMonth = document.querySelector('.currentMonth')
     const bookingDate = document.querySelectorAll('.date')
@@ -667,7 +668,12 @@ function processingBooking(){
         const currentTime = ()=>{
             const currentHour = new Date().getHours()
             const currentMin = new Date().getMinutes()
-            return (currentHour.toString() + currentMin.toString())
+            
+            if(currentHour < 10){
+                return '0' + currentHour.toString() + currentMin.toString()
+            }else{
+                return (currentHour.toString() + currentMin.toString())
+            }
         }
         const btnText = btn.innerText
         const onlyMovieTime = btnText.replace(':','')
@@ -675,7 +681,7 @@ function processingBooking(){
         const today = document.getElementsByClassName('date')[0]
         if(movieTime < currentTime() && today.classList.contains('select')){
             btn.classList.add('unavailableTime')
-        }else{
+        }else if(movieTime >= currentTime() || !today.classList.contains('select')){
             btn.classList.remove('unavailableTime')
         }
 
@@ -714,6 +720,23 @@ function selectOption(){
                 })
                 if(!e.target.classList.contains('soldOut')){
                     e.target.classList.add('activeOption')
+                    const availablePeople =parseInt(e.target.nextElementSibling.textContent)
+                    const options = document.querySelectorAll('.optionPeople')
+                    options.forEach((option)=>{
+                        if(availablePeople <= 10 && option.value > availablePeople){
+                            option.disabled = true
+                        }else{
+                            option.disabled = false
+                        }
+                        console.log(peopleNumber)
+                        if(peopleNumber > availablePeople){
+                            if(Number(option.value) === availablePeople){
+                                option.selected = true
+                                createAlert('.seatContainer', `You can select up to ${availablePeople} People`,'fingerUp')
+                                peopleNumber = availablePeople
+                            }
+                        }
+                    })
                 }
             }
         })
@@ -786,12 +809,23 @@ function findingAvailableSeat(){
             })
             modal.innerHTML = `
                 <div class="seatMapContainer">
+                    <span class="material-icons i-close">
+                        close
+                    </span>
                     <div class="screen">Screen</div>
                     ${totalLine}
+                    <hr>
+                    <div class="displayContainer">
+                        <div class="displayNumber">10</div>
+                    </div>
                 </div>
             `
             modal.classList.add('seatMapModal')
+            modal.style.display='flex'
             parentElement.appendChild(modal)
+            setTimeout(()=>{
+                modal.classList.add('activeModal')
+            },20)
             updatePremiumSeats()
             updateAvailableSeats()
         } 
@@ -802,21 +836,32 @@ function findingAvailableSeat(){
             createAlert('.seatContainer', 'Select people','fingerUp')
         }
     })
-    function createAlert(targetClass, targetMessage,className){
-        const targetBox = document.querySelector(targetClass)
-        const alertElement = document.createElement('div')
-        alertElement.innerHTML = `
-                <img src="../img/finger.svg">
-                <span>${targetMessage}</span>
-        `
-        alertElement.classList.add('alertBox',className)
-        targetBox.appendChild(alertElement)
-        setTimeout(()=>{
-            targetBox.removeChild(alertElement)
-        },3000)
-    }
     
 }
+
+function timingSlide(target){
+    let timing = 0
+    const targets = document.querySelectorAll(target)
+    targets.forEach((target)=>{
+        setTimeout(()=>{
+            target.classList.add('slideDown')
+        },(timing+=100))
+    })
+}
+function createAlert(targetClass, targetMessage,className){
+    const targetBox = document.querySelector(targetClass)
+    const alertElement = document.createElement('div')
+    alertElement.innerHTML = `
+            <img src="../img/finger.svg">
+            <span>${targetMessage}</span>
+    `
+    alertElement.classList.add('alertBox',className)
+    targetBox.appendChild(alertElement)
+    setTimeout(()=>{
+        targetBox.removeChild(alertElement)
+    },3000)
+}
+
 function updatePremiumSeats(){
     const seats = document.querySelectorAll('.seat')
     seats.forEach((seat)=>{
@@ -830,6 +875,8 @@ function updatePremiumSeats(){
         }
     })
 }
+
+
 
 function updateAvailableSeats(){
     const leftTickets = document.querySelectorAll('.timeBtnBox .seat')
@@ -867,6 +914,12 @@ function updateAvailableSeats(){
         }
     })
     selectingSeat()
+    displaySeatNumber(peopleNumber)
+}
+
+function displaySeatNumber(displayNumber){
+    const seatDisplay = document.querySelector('.displayNumber')
+    seatDisplay.textContent = displayNumber
 }
 
 function selectingSeat(){
@@ -874,10 +927,58 @@ function selectingSeat(){
     seats.forEach((seat)=>{
         if(!seat.classList.contains('unavailableSeat')){
             seat.addEventListener('click',()=>{
+                const selectedSeats = document.querySelectorAll('.selected')
                 seat.classList.toggle('selected')
+                displaySeatBtn(seat)
+                if(selectedSeats.length+1 > peopleNumber){
+                    seat.classList.remove('selected')
+                }
             })
         }
     })
+}
+
+function displaySeatBtn(target){
+    const displayContainer = document.querySelector('.displayContainer')
+    const divBtn = document.createElement('div')
+    setTimeout(()=>{
+
+        const seatData = target.dataset.seat
+        if(target.classList.contains('selected')){
+            divBtn.innerHTML =`
+            <span class="seatData">${seatData}</span>
+            <span class="material-icons i-delete">
+                highlight_off
+            </span>
+            `
+            divBtn.classList.add('seatInfo')
+            setTimeout(()=>{
+                divBtn.classList.add('showSeatInfo')
+            },20)
+            displayContainer.appendChild(divBtn)
+        }else{
+            const seatInfoBtns = document.querySelectorAll('.seatInfo')
+            seatInfoBtns.forEach((btn)=>{
+                if(btn.children[0].textContent === seatData){
+                    btn.classList.remove('showSeatInfo')
+                    setTimeout(()=>{
+                        displayContainer.removeChild(btn)
+                    },300)
+                }
+            })
+        }
+    },20)
+    displayCount()
+}
+
+function displayCount(){
+    let count =peopleNumber
+    const buttons = document.querySelectorAll('.seatInfo')
+    console.log(buttons.length)
+   let caculatingNum = count - buttons.length-1
+    document.querySelector('.displayNumber').textContent = caculatingNum
+
+    
 }
 
 

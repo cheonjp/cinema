@@ -414,11 +414,12 @@ function closeBtn(){
   const closeButtons = document.querySelectorAll('.i-close')
   closeButtons.forEach((btn)=>{
     btn.addEventListener('click',()=>{
-      console.log(btn)
       if(btn.parentElement.classList.contains('modalContainer')){
         closeModal()
       }else if(btn.parentElement.classList.contains('subModalContainer')){
         closeSubModal()
+      }else if(btn.parentElement.classList.contains('seatMapContainer')){
+        closeSeatModal()
       }
     })
   })
@@ -444,10 +445,22 @@ function closeSubModal(){
     parentElement.removeChild(subModal)
   },300)
 }
+function closeSeatModal(){
+  const seatModal = document.querySelector('.seatMapModal')
+  const container = document.querySelector('.seatMapContainer')
+  seatModal.classList.remove('activeModal')
+  setTimeout(()=>{
+    seatModal.style.display='none'
+  },300)
+}
 
 window.onclick=(e)=>{
   if(e.target.matches('.modal')){
     closeModal()
+  }else if(e.target.matches('.subModal')){
+    closeSubModal()
+  }else if(e.target.matches('.seatMapModal')){
+    closeSeatModal()
   }
   closeBtn()
 }

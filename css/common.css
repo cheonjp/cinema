@@ -15,6 +15,8 @@ html {
 body {
   margin: 0;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#000614), to(#011936));
+  background-image: -webkit-linear-gradient(#000614, #011936);
+  background-image: -o-linear-gradient(#000614, #011936);
   background-image: linear-gradient(#000614, #011936);
   overflow-x: hidden;
 }
@@ -62,6 +64,7 @@ body {
   padding-top: 25px;
   font-weight: 400;
   -webkit-transition: letter-spacing .2s;
+  -o-transition: letter-spacing .2s;
   transition: letter-spacing .2s;
   position: relative;
 }
@@ -77,6 +80,7 @@ body {
   height: 3px;
   background-color: #f1ca0b;
   -webkit-transition: .2s;
+  -o-transition: .2s;
   transition: .2s;
   content: '';
 }
@@ -138,6 +142,7 @@ body {
   font-size: 18px;
   margin-right: 10px;
   -webkit-transform: translateY(3px);
+      -ms-transform: translateY(3px);
           transform: translateY(3px);
 }
 
@@ -180,6 +185,8 @@ h1:before {
 .footer {
   color: white;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#232323), to(#000));
+  background-image: -webkit-linear-gradient(top, #232323, #000);
+  background-image: -o-linear-gradient(top, #232323, #000);
   background-image: linear-gradient(to bottom, #232323, #000);
   height: 303px;
 }
@@ -231,6 +238,8 @@ h1:before {
   height: 100%;
   content: '';
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), black);
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0), black);
   background-image: linear-gradient(rgba(0, 0, 0, 0), black);
 }
 
@@ -285,8 +294,10 @@ h1:before {
           align-items: center;
   position: relative;
   -webkit-transition: .3s;
+  -o-transition: .3s;
   transition: .3s;
   -webkit-transform: scale(0);
+      -ms-transform: scale(0);
           transform: scale(0);
 }
 
@@ -303,7 +314,7 @@ h1:before {
 .modal .subModal {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   left: 0;
   top: 0;
@@ -334,8 +345,10 @@ h1:before {
           align-items: center;
   position: relative;
   -webkit-transition: .3s;
+  -o-transition: .3s;
   transition: .3s;
   -webkit-transform: scale(0);
+      -ms-transform: scale(0);
           transform: scale(0);
 }
 
@@ -406,6 +419,7 @@ h1:before {
   border-radius: 50px;
   margin-left: 30px;
   -webkit-transition: .3s linear;
+  -o-transition: .3s linear;
   transition: .3s linear;
 }
 
@@ -413,6 +427,7 @@ h1:before {
   width: 12px !important;
   height: 12px !important;
   -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
           transform: translateY(-2px);
   position: relative;
 }
@@ -422,7 +437,7 @@ h1:before {
   top: -30px;
   left: 0;
   text-align: center;
-  color: white;
+  color: white !important;
   font-family: 'calibri', Arial;
   white-space: nowrap;
 }
@@ -430,18 +445,21 @@ h1:before {
 .modal .contentBox .process.movie:before {
   content: 'Movie';
   -webkit-transform: translateX(-15px);
+      -ms-transform: translateX(-15px);
           transform: translateX(-15px);
 }
 
 .modal .contentBox .process.selection:before {
   content: 'Select time & seat';
   -webkit-transform: translateX(-55px);
+      -ms-transform: translateX(-55px);
           transform: translateX(-55px);
 }
 
 .modal .contentBox .process.checkout:before {
   content: 'Check out';
   -webkit-transform: translateX(-25px);
+      -ms-transform: translateX(-25px);
           transform: translateX(-25px);
 }
 
@@ -471,11 +489,13 @@ h1:before {
   width: 57%;
   height: 100%;
   -webkit-transition: .3s;
+  -o-transition: .3s;
   transition: .3s;
 }
 
 .modal .contentBox .bookingBox {
   -webkit-transform: translateX(400px);
+      -ms-transform: translateX(400px);
           transform: translateX(400px);
   opacity: 0;
 }
@@ -510,6 +530,7 @@ h1:before {
   cursor: pointer;
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;
+  -o-transition: transform .3s;
   transition: transform .3s;
   transition: transform .3s, -webkit-transform .3s;
 }
@@ -542,6 +563,7 @@ h1:before {
 
 .modal .contentBox .titleBox span:last-child {
   -webkit-transform: translateY(2px);
+      -ms-transform: translateY(2px);
           transform: translateY(2px);
   margin-left: 10px;
 }
@@ -571,6 +593,7 @@ h1:before {
 
 .modal .contentBox .seat {
   -webkit-transform: translateY(7px);
+      -ms-transform: translateY(7px);
           transform: translateY(7px);
 }
 
@@ -595,6 +618,7 @@ h1:before {
   height: 13px;
   background-color: white;
   -webkit-transform: translateY(1px);
+      -ms-transform: translateY(1px);
           transform: translateY(1px);
   margin-right: 10px;
 }
@@ -637,6 +661,7 @@ h1:before {
   height: 15px;
   margin-right: 10px;
   -webkit-transform: translateY(-3px);
+      -ms-transform: translateY(-3px);
           transform: translateY(-3px);
 }
 
@@ -655,6 +680,7 @@ h1:before {
 
 .activeModal > div {
   -webkit-transform: scale(1) !important;
+      -ms-transform: scale(1) !important;
           transform: scale(1) !important;
 }
 
@@ -681,6 +707,7 @@ h1:before {
 .select {
   color: #f96400 !important;
   -webkit-transform: translateY(-7px);
+      -ms-transform: translateY(-7px);
           transform: translateY(-7px);
 }
 
@@ -752,6 +779,7 @@ h1:before {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
@@ -772,6 +800,7 @@ h1:before {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
@@ -792,6 +821,7 @@ h1:before {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
@@ -822,6 +852,7 @@ h1:before {
 
 .activeProcess {
   -webkit-transform: translateX(-400px) !important;
+      -ms-transform: translateX(-400px) !important;
           transform: translateX(-400px) !important;
   opacity: 0 !important;
   pointer-events: none !important;
@@ -829,6 +860,7 @@ h1:before {
 
 .activeShow {
   -webkit-transform: translateX(0) !important;
+      -ms-transform: translateX(0) !important;
           transform: translateX(0) !important;
   opacity: 1 !important;
 }
@@ -877,6 +909,7 @@ h1:before {
   color: #f96400 !important;
   position: relative;
   -webkit-transition: .3s;
+  -o-transition: .3s;
   transition: .3s;
 }
 
@@ -1027,7 +1060,7 @@ h1:before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   display: -webkit-box;
@@ -1047,6 +1080,84 @@ h1:before {
   height: 80%;
   background-color: white;
   padding: 30px 40px;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.seatMapModal .seatMapContainer .i-close {
+  color: #4b4b4b;
+  top: -15px;
+  right: -15px;
+}
+
+.seatMapModal .seatMapContainer .displayContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.seatMapModal .seatMapContainer .displayContainer .displayNumber {
+  width: 60px;
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+  color: #f1ca0b;
+  position: relative;
+  margin-right: 20px;
+}
+
+.seatMapModal .seatMapContainer .displayContainer .displayNumber:before {
+  position: absolute;
+  content: 'seats left';
+  bottom: -10px;
+  font-weight: 400;
+  left: 0;
+  font-size: 16px;
+  color: #838282;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.seatMapModal .seatMapContainer .displayContainer .seatInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #9c9c9c;
+  background-color: #dfdfdf;
+  padding: 2px 5px;
+  width: 65px;
+  height: 30px;
+  font-family: 'calibri', Arial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 5px;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.seatMapModal .seatMapContainer .displayContainer .seatInfo .i-delete {
+  font-size: 22px;
+  color: #9e9e9e;
+  cursor: pointer;
+  -webkit-transform: translateY(2px);
+      -ms-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+.seatMapModal .seatMapContainer .displayContainer .seatInfo .seatData {
+  font-size: 20px;
 }
 
 .seatMapModal .screen {
@@ -1057,6 +1168,11 @@ h1:before {
   margin-bottom: 55px;
 }
 
+.showSeatInfo {
+  max-width: 70px !important;
+  opacity: 1 !important;
+}
+
 .seatMapContainer .seat {
   border: 1px solid black;
   width: 32px;
@@ -1064,7 +1180,20 @@ h1:before {
   display: inline-block;
   text-align: center;
   white-space: wrap;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
   cursor: pointer;
+}
+
+.seatMapContainer .seat::-moz-selection {
+  background: none;
+  color: none;
+}
+
+.seatMapContainer .seat::selection {
+  background: none;
+  color: none;
 }
 
 .passage {
@@ -1098,6 +1227,7 @@ h1:before {
   border-width: 1px 0 0 0;
   content: '';
   -webkit-transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
           transform: rotate(40deg);
   pointer-events: none;
 }
@@ -1112,6 +1242,7 @@ h1:before {
   border-width: 1px 0 0 0;
   content: '';
   -webkit-transform: rotate(-40deg);
+      -ms-transform: rotate(-40deg);
           transform: rotate(-40deg);
   overflow: hidden;
   pointer-events: none;
@@ -1178,6 +1309,7 @@ h1:before {
   -webkit-animation-iteration-count: 3;
           animation-iteration-count: 3;
   -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 
@@ -1244,4 +1376,35 @@ h1:before {
             transform: translateY(-5px) rotate(90deg);
   }
 }
-/*# sourceMappingURL=common.css.map */
+
+.i-close {
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.i-close:hover {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+option:disabled {
+  background: black;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #dcdcdc;
+}
+
+.slideDown {
+  -webkit-transform: translateY(0) !important;
+      -ms-transform: translateY(0) !important;
+          transform: translateY(0) !important;
+  opacity: 1 !important;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
