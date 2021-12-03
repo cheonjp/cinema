@@ -109,13 +109,15 @@ body{
     width:100%;
     // height: calc(100vh - 70px);
 }
-.orangeBtn,.grayBtn{
+.orangeBtn,.grayBtn,.yellowBtn{
     background-color:$orange;
     margin-right:5px;
     color:white;
     text-decoration: none;
+    outline:none;
     font-size:16px;
     padding:10px 20px;
+    border:none;
     cursor:pointer;
     .material-icons{
         font-size:18px;
@@ -125,6 +127,9 @@ body{
 }
 .grayBtn{
     background-color:#636363;
+}
+.yellowBtn{
+    background-color:$yellow;
 }
 section{
     padding-bottom:50px;
@@ -447,22 +452,7 @@ h1{
             position:relative;
         }
         .seatColumn{
-            .seatGradeBox{
-                display:flex;
-                .gradeBox{
-                    width:13px;
-                    height:13px;
-                    background-color:white;
-                    transform:translateY(1px);
-                    margin-right:10px;
-                }
-                .gradeBox.yellow{
-                    background-color:$yellow;
-                }
-                .gradeBox.red{
-                    background-color:red;
-                }
-            }
+
             .priceBox{
                 margin:15px 0;
                 .price{
@@ -499,6 +489,34 @@ h1{
     }
     .movieDescriction{
         line-height:25px;
+    }
+}
+.seatGradeBox{
+    display:flex;
+    .gradeBox{
+        width:13px;
+        height:13px;
+        background-color:white;
+        transform:translateY(1px);
+        margin-right:10px;
+    }
+    .gradeBox.yellow{
+        background-color:$yellow;
+    }
+    .gradeBox.red{
+        background-color:red;
+    }
+}
+.seatMapContainer .seatGradeBox{
+    position:absolute;
+    right:22px;
+    top:80px;
+    .gradeBox:first-child{
+        border:1px solid black;
+    }
+    .seatText{
+        margin-right:20px;
+        transform:translateY(-2px)
     }
 }
 
@@ -558,6 +576,19 @@ h1{
     background:none;
     border: 1px solid $yellow;
     color:$yellow;
+    outline:none;
+    cursor:pointer;
+    &:disabled{
+        border-color:#757505;
+        color:#757505;
+        cursor:not-allowed;
+    }
+}
+.orangeBorderBtn{
+    padding:10px 15px;
+    background:none;
+    border: 1px solid $orange;
+    color:$orange;
     outline:none;
     cursor:pointer;
 }
@@ -797,6 +828,7 @@ h1{
             right: -15px;
         }
         .displayContainer{
+            position:relative;
             display:flex;
             .displayNumber{
                 width:60px;
@@ -822,9 +854,9 @@ h1{
             .seatInfo{
                 display:flex;
                 color:rgb(156, 156, 156);
-                background-color:rgb(223, 223, 223);
+                background-color:#dbdbdb;
                 padding:2px 5px;
-                width:65px;
+                width:58px;
                 height:30px;
                 font-family: 'calibri', Arial;
                 justify-content: space-between;
@@ -836,7 +868,7 @@ h1{
                 overflow:hidden;
                 opacity:0;
                 .i-delete{
-                    font-size:22px;
+                    font-size:16px;
                     color:rgb(158, 158, 158);
                     cursor:pointer;
                     transform:translateY(2px);
@@ -846,6 +878,14 @@ h1{
                 }
 
             }
+            .yellowBtn{
+                background-color: #ffd700;
+            }
+            .displayBtnContainer{
+                position:absolute;
+                bottom:-20px;
+                right:0;
+            }
         }
     }
     .screen{
@@ -854,11 +894,15 @@ h1{
         padding:8px;
         text-align: center;
         margin-bottom:55px;
+        position:relative;
     }
 }
 .showSeatInfo{
     max-width:70px !important;
     opacity:1 !important;
+
+}
+.disabledYellowBtn{
 
 }
 .seatMapContainer .seat{
@@ -887,6 +931,12 @@ h1{
 }
 .premiumSeat{
     background-color:$yellow;
+}
+.seatSelectBtn:disabled{
+    background-color: #826e00 !important;
+    color: #b7b7b7 !important;
+    cursor:not-allowed;
+
 }
 .unavailableSeat{
     background-color:rgb(255, 0, 0) !important;
@@ -1021,4 +1071,33 @@ hr{
     transform:translateY(0) !important;
     opacity:1 !important;
     transition: .3s;
+}
+
+.selectWrapper{
+    position:relative;
+    &:after{
+        content:'';
+        width:6px;
+        height:6px;
+        position: absolute;
+        border: solid black;
+        border-width:0 0 2px 2px;
+        transform:rotate(-45deg);
+        top:10px;
+        right:15px;
+        pointer-events: none;
+    }
+    select{
+        appearance:none;
+        outline:none;
+        border:none;
+        box-shadow:none;
+        cursor:pointer;
+    }
+    option{
+        // background:rgb(107, 107, 107);
+        // color:white;
+        // padding:20px;
+    }
+
 }

@@ -411,19 +411,21 @@ function createInfoModal(targetMovie){
                                     <div class="priceBox">
                                         <div>Price: <span class="price">12</span>$</div>
                                     </div>
-                                    <select id="people" name="peopleNumber">
-                                        <option value="1" class="optionPeople">1</option>
-                                        <option value="2" class="optionPeople">2</option>
-                                        <option value="3" class="optionPeople">3</option>
-                                        <option value="4" class="optionPeople">4</option>
-                                        <option value="5" class="optionPeople">5</option>
-                                        <option value="6" class="optionPeople">6</option>
-                                        <option value="7" class="optionPeople">7</option>
-                                        <option value="8" class="optionPeople">8</option>
-                                        <option value="9" class="optionPeople">9</option>
-                                        <option value="10" class="optionPeople">10</option>
-                                        <option value="selected" selected disabled>People</option>
-                                    </select>
+                                    <div class="selectWrapper">
+                                        <select id="people" name="peopleNumber">
+                                            <option value="1" class="optionPeople">1</option>
+                                            <option value="2" class="optionPeople">2</option>
+                                            <option value="3" class="optionPeople">3</option>
+                                            <option value="4" class="optionPeople">4</option>
+                                            <option value="5" class="optionPeople">5</option>
+                                            <option value="6" class="optionPeople">6</option>
+                                            <option value="7" class="optionPeople">7</option>
+                                            <option value="8" class="optionPeople">8</option>
+                                            <option value="9" class="optionPeople">9</option>
+                                            <option value="10" class="optionPeople">10</option>
+                                            <option value="selected" selected disabled>People</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="seatColumn">
                                     <div class="seatGradeBox">
@@ -462,7 +464,7 @@ function createInfoModal(targetMovie){
                         videocam
                     </span> Play trailer</a>
                     <button class="backBtn whiteBorderBtn">Back</button>
-                    <button class="nextBtn yellowBorderBtn">Next</button>
+                    <button class="nextBtn yellowBorderBtn" disabled >Next</button>
                 </div>
             </div>
         </div>
@@ -485,7 +487,6 @@ function selectPeople(){
     peopleDropBox = document.querySelector('#people')
     peopleOptions = document.querySelectorAll('#people .optionPeople')
     peopleDropBox.addEventListener('change',()=>{
-        console.log(peopleDropBox.value)
         return peopleNumber = peopleDropBox.value
     })
 }
@@ -728,7 +729,6 @@ function selectOption(){
                         }else{
                             option.disabled = false
                         }
-                        console.log(peopleNumber)
                         if(peopleNumber > availablePeople){
                             if(Number(option.value) === availablePeople){
                                 option.selected = true
@@ -812,11 +812,35 @@ function findingAvailableSeat(){
                     <span class="material-icons i-close">
                         close
                     </span>
-                    <div class="screen">Screen</div>
+                    <div class="screen">
+                        Screen
+                    </div>
                     ${totalLine}
                     <hr>
                     <div class="displayContainer">
                         <div class="displayNumber">10</div>
+                        <div class="displayBtnContainer">
+                            <button class="grayBtn deleteAllBtn">
+                                <span class="material-icons">
+                                    delete_outline
+                                </span>
+                                Clear All
+                            </button>
+                            <button class="yellowBtn seatSelectBtn" disabled>
+                                <span class="material-icons">
+                                    done
+                                    </span>
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                    <div class="seatGradeBox">
+                        <div class="gradeBox"></div>
+                        <div class="seatText">Normal seats</div>
+                        <div class="gradeBox yellow"></div>
+                        <div class="seatText">Premium seats</div>
+                        <div class="gradeBox red"></div>
+                        <div class="seatText">unavailable seats</div>
                     </div>
                 </div>
             `
@@ -952,10 +976,14 @@ function displaySeatBtn(target){
             </span>
             `
             divBtn.classList.add('seatInfo')
+            if(target.classList.contains('premiumSeat')){
+                divBtn.classList.add('yellowBtn')
+            }
             setTimeout(()=>{
                 divBtn.classList.add('showSeatInfo')
             },20)
             displayContainer.appendChild(divBtn)
+            deleteBtn(displayContainer)
         }else{
             const seatInfoBtns = document.querySelectorAll('.seatInfo')
             seatInfoBtns.forEach((btn)=>{
@@ -964,21 +992,97 @@ function displaySeatBtn(target){
                     setTimeout(()=>{
                         displayContainer.removeChild(btn)
                     },300)
+
                 }
             })
         }
     },20)
-    displayCount()
+    displayCount(displayContainer)
+    
 }
 
-function displayCount(){
-    let count =peopleNumber
-    const buttons = document.querySelectorAll('.seatInfo')
-    console.log(buttons.length)
-   let caculatingNum = count - buttons.length-1
-    document.querySelector('.displayNumber').textContent = caculatingNum
+function deleteBtn(parentElement){
+    const deleteBtns = document.querySelectorAll('.displayContainer .i-delete')
+    const clearAllBtn = document.querySelector('.deleteAllBtn')
+    const displayBtns = document.querySelectorAll('.displayContainer .seatInfo')
+    deleteBtns.forEach((btn)=>{
+        btn.addEventListener('click',()=>{
+            const displaySeatCode = btn.previousElementSibling.textContent
+            const wholeBtn = btn.parentElement
+            const seatBtns = document.querySelectorAll('.seatMapContainer .seat')
+            seatBtns.forEach((seatBtn)=>{
+                const seatBtnsCode = seatBtn.dataset.seat
+                if(seatBtnsCode === displaySeatCode){
+                    seatBtn.classList.remove('selected')
+                }
+            })
+            wholeBtn.classList.remove('showSeatInfo')
+            setTimeout(()=>{
+                parentElement.removeChild(wholeBtn)
+            },180)
+            displayCount(parentElement)
+        })
+        clearAllBtn.addEventListener('click',()=>{
+            const seats = document.querySelectorAll('.seatMapContainer .seat')
+            seats.forEach((seat)=>{
+                if(seat.classList.contains('selected')){
+                    seat.click()
+                }
+            })
+        })
+    })
+}
 
+
+function displayCount(){
+    const buttonsNumber = []
+    const targetText =  document.querySelector('.displayNumber')
+    let count =peopleNumber
+    const buttons = document.querySelectorAll('.seatMapContainer .seat')
+    let btnCounter
     
+    buttons.forEach((btn)=>{
+        if(btn.classList.contains('selected')){
+            buttonsNumber.push(btn)
+            btnCounter = buttonsNumber.length
+        }
+        targetText.textContent = count - btnCounter
+        if(targetText.textContent === '-1'){
+            targetText.textContent = 0
+        }else if(targetText.textContent === 'NaN'){
+            targetText.textContent = count
+        }
+    })
+    let counter = targetText.textContent
+    changeBtnStatus(counter)
+}
+
+function changeBtnStatus(number){
+    const selectBtn = document.querySelector('.displayBtnContainer .seatSelectBtn')
+    if(number !=='0'){
+        selectBtn.disabled = true
+    }else if(number === '0'){
+        activeClickBtn(selectBtn)
+    }
+}
+
+function activeClickBtn(target){
+    let activeNextBtn = false
+    target.disabled = false
+    target.addEventListener('click',()=>{
+        // document.querySelector('.seatMapModal').click()
+        activeNextBtn = true
+        clickNext(activeNextBtn)
+    })
+    clickNext(activeNextBtn)
+}
+
+function clickNext(action){
+    if(action === true){
+        document.querySelector('.modalContainer .nextBtn').disabled = false
+    }else{
+        document.querySelector('.modalContainer .nextBtn').disabled = true
+    }
 }
 
 
