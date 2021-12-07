@@ -466,6 +466,8 @@ window.onclick=(e)=>{
 }
 
 
+
+
 const movieInfo = [
   {
       

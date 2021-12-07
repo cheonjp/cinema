@@ -358,11 +358,13 @@ h1{
             transform: translateX(-25px);
         }
         .infoContainer{
+            // display:none !important;
             display:flex;
             width:100%;
             height:90%;
             justify-content: space-between;
             flex-wrap: nowrap;
+            transition:.3s;
         }
         .movieImg{
             width:40%;
@@ -491,6 +493,10 @@ h1{
         line-height:25px;
     }
 }
+.selectWrapper select{
+    padding:8px 10px;
+    width:130px;
+}
 .seatGradeBox{
     display:flex;
     .gradeBox{
@@ -551,7 +557,6 @@ h1{
     .priceBox{
         margin:0 !important;
         text-align: right;
-        font-weight: bold;
         .price{
             font-size:$f-30 !important;
         }
@@ -1092,12 +1097,207 @@ hr{
         outline:none;
         border:none;
         box-shadow:none;
+        height:40px;
         cursor:pointer;
     }
-    option{
-        // background:rgb(107, 107, 107);
-        // color:white;
-        // padding:20px;
-    }
 
+
+}
+.i-check{
+    font-size:18px;
+}
+.checkOutContainer{
+    display:none;
+    // display:flex;
+    justify-content: space-between;
+    opacity:0;
+    transform: translateX(400px);
+    transition: .3s;
+    width:100%;
+    height:80%;
+    .formContainer{
+        width:48%;
+        height:100%;
+        display:flex;
+        flex-wrap: wrap;
+        align-content:flex-start;
+    }
+    .confirmContainer{
+        width:48%;
+        height:100%;
+        background-color:#000A17;
+    }
+}
+.showCheckout{
+    display:flex !important;
+}
+.inputWrapper{
+    position:relative;
+    margin-bottom:40px;
+}
+
+input[type="text"]{
+    height:40px;
+    width:100%;
+    padding:0 10px;
+    outline:none;
+    transition: .3s;
+    &:focus{
+        ~.topLine{
+            width:100%;
+            height:3px;
+        }
+        ~.rightLine{
+            width:3px;
+            height:100%;
+        }
+        ~.bottomLine{
+            width:100%;
+            height:3px;
+        }
+        ~.leftLine{
+            width:3px;
+            height:100%;
+        }
+    }
+}
+input ~ .topLine{
+    display:inline-block;
+    position:absolute;
+    width:0;
+    height:0;
+    top:0;
+    left:0;
+    transition:.2s;
+    background-color:$yellow;
+    // border: solid $yellow;
+    // border-width:2px 2px 0 0;
+}
+input ~ .rightLine{
+    display:inline-block;
+    position:absolute;
+    width:0;
+    height:0;
+    top:0;
+    right:0;
+    transition:.2s;
+    transition-delay: .1s;
+    background-color:$yellow;
+}
+input ~ .bottomLine{
+    display:inline-block;
+    position:absolute;
+    width:0;
+    height:0;
+    bottom:0;
+    right:0;
+    transition:.2s;
+    transition-delay: .2s;
+    background-color:$yellow;
+}
+input ~ .leftLine{
+    display:inline-block;
+    position:absolute;
+    width:0;
+    height:0;
+    bottom:0;
+    left:0;
+    transition:.2s;
+    transition-delay: .3s;
+    background-color:$yellow;
+}
+input ~ .bottomLine{
+
+}
+.formContainer{
+    display:flex;
+    justify-content: space-between;
+}
+.checkOutContainer{
+    justify-content: space-between;
+    .inputWrapper{
+        width:48%;
+    }
+    .placeholder{
+        color:#7e7e7e;
+        position:absolute;
+        top:12px;
+        left:10px;
+        pointer-events: none;
+        transition: .3s;
+        font-size:15px;
+    }
+    .cardBox{
+        width:48%;
+        transform: translateY(-25px);
+        p{
+            margin-top:0;
+            color:white;
+            margin-bottom:10px;
+        }
+        .card{
+            background-size:contain;
+            background-repeat: no-repeat;
+            width:35px;
+            height:30px;
+
+            display:inline-block;
+            position:relative;
+            margin-right:20px;
+            &:before{
+                position:absolute;
+                top:2px;
+                left:2px;
+                width:80%;
+                height:80%;
+                content:'';
+                background-color:white;
+                z-index:-1;
+            }
+            &:after{
+                position:absolute;
+                bottom:-25px;
+                color:white;
+                text-align: center;
+            }
+        }
+        .visa{
+            background-image: url('../img/visa.svg');
+           
+        }
+        .master{
+            background-image: url('../img/master.svg');
+           
+        }
+        .express{
+            background-image: url('../img/express.svg');
+           
+        }
+    }
+}
+.activeInput{
+    color:$yellow !important;
+    transform:translate(-10px,-37px);
+}
+.multiInputWrapper{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+    .splitContainer{
+        width:48%;
+        display:flex;
+        justify-content: space-between;
+    }
+    .selectWrapper:after{
+        top:58px !important;
+    }
+    p{
+        color:white;
+        margin-bottom: 10px;
+        font-size:15px;
+    }
+    .inputWrapper{
+        transform:translateY(43px);
+        margin-left:10px;
+    }
 }

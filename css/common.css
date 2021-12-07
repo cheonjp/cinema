@@ -480,6 +480,9 @@ h1:before {
           justify-content: space-between;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
 }
 
 .modal .contentBox .movieImg {
@@ -660,6 +663,11 @@ h1:before {
   line-height: 25px;
 }
 
+.selectWrapper select {
+  padding: 8px 10px;
+  width: 130px;
+}
+
 .seatGradeBox {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -750,7 +758,6 @@ h1:before {
 .lastPriceBox .priceBox {
   margin: 0 !important;
   text-align: right;
-  font-weight: bold;
 }
 
 .lastPriceBox .priceBox .price {
@@ -1492,5 +1499,274 @@ hr {
   border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  height: 40px;
   cursor: pointer;
+}
+
+.i-check {
+  font-size: 18px;
+}
+
+.checkOutContainer {
+  display: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 0;
+  -webkit-transform: translateX(400px);
+      -ms-transform: translateX(400px);
+          transform: translateX(400px);
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  width: 100%;
+  height: 80%;
+}
+
+.checkOutContainer .formContainer {
+  width: 48%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+.checkOutContainer .confirmContainer {
+  width: 48%;
+  height: 100%;
+  background-color: #000A17;
+}
+
+.showCheckout {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+input[type="text"] {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  outline: none;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+input[type="text"]:focus ~ .topLine {
+  width: 100%;
+  height: 3px;
+}
+
+input[type="text"]:focus ~ .rightLine {
+  width: 3px;
+  height: 100%;
+}
+
+input[type="text"]:focus ~ .bottomLine {
+  width: 100%;
+  height: 3px;
+}
+
+input[type="text"]:focus ~ .leftLine {
+  width: 3px;
+  height: 100%;
+}
+
+input ~ .topLine {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0;
+  left: 0;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  background-color: #f1ca0b;
+}
+
+input ~ .rightLine {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0;
+  right: 0;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  -webkit-transition-delay: .1s;
+       -o-transition-delay: .1s;
+          transition-delay: .1s;
+  background-color: #f1ca0b;
+}
+
+input ~ .bottomLine {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  -webkit-transition-delay: .2s;
+       -o-transition-delay: .2s;
+          transition-delay: .2s;
+  background-color: #f1ca0b;
+}
+
+input ~ .leftLine {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  -webkit-transition-delay: .3s;
+       -o-transition-delay: .3s;
+          transition-delay: .3s;
+  background-color: #f1ca0b;
+}
+
+.formContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkOutContainer {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkOutContainer .inputWrapper {
+  width: 48%;
+}
+
+.checkOutContainer .placeholder {
+  color: #7e7e7e;
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  pointer-events: none;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  font-size: 15px;
+}
+
+.checkOutContainer .cardBox {
+  width: 48%;
+  -webkit-transform: translateY(-25px);
+      -ms-transform: translateY(-25px);
+          transform: translateY(-25px);
+}
+
+.checkOutContainer .cardBox p {
+  margin-top: 0;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.checkOutContainer .cardBox .card {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+}
+
+.checkOutContainer .cardBox .card:before {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 80%;
+  height: 80%;
+  content: '';
+  background-color: white;
+  z-index: -1;
+}
+
+.checkOutContainer .cardBox .card:after {
+  position: absolute;
+  bottom: -25px;
+  color: white;
+  text-align: center;
+}
+
+.checkOutContainer .cardBox .visa {
+  background-image: url("../img/visa.svg");
+}
+
+.checkOutContainer .cardBox .master {
+  background-image: url("../img/master.svg");
+}
+
+.checkOutContainer .cardBox .express {
+  background-image: url("../img/express.svg");
+}
+
+.activeInput {
+  color: #f1ca0b !important;
+  -webkit-transform: translate(-10px, -37px);
+      -ms-transform: translate(-10px, -37px);
+          transform: translate(-10px, -37px);
+}
+
+.multiInputWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.multiInputWrapper .splitContainer {
+  width: 48%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.multiInputWrapper .selectWrapper:after {
+  top: 58px !important;
+}
+
+.multiInputWrapper p {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.multiInputWrapper .inputWrapper {
+  -webkit-transform: translateY(43px);
+      -ms-transform: translateY(43px);
+          transform: translateY(43px);
+  margin-left: 10px;
 }

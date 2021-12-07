@@ -409,7 +409,7 @@ function createInfoModal(targetMovie){
                                         <div>Normal seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">12</span>$</div>
+                                        <div>Price: <span class="price">15</span>$</div>
                                     </div>
                                     <div class="selectWrapper">
                                         <select id="people" name="peopleNumber">
@@ -433,7 +433,7 @@ function createInfoModal(targetMovie){
                                         <div>Premium seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">12</span>$</div>
+                                        <div>Price: <span class="price">25</span>$</div>
                                     </div>
                                     <button id="searchSeat" class="yellowBorderBtn">
                                         <span class="material-icons i-seat">
@@ -455,8 +455,113 @@ function createInfoModal(targetMovie){
                         </div>
                     </div>
                 </div>
+                <div class="checkOutContainer">
+                    <div class="formContainer">
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span class="placeholder">Full Name</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="cardBox">
+                            <p>Accepted Cards</p>
+                            <div class="cardContainer">
+                                <div class="card visa"></div>
+                                <div class="card master"></div>
+                                <div class="card express"></div>
+                            </div>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span class="placeholder">Email</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput"t type="text">
+                            <span class="placeholder">Name on card</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span class="placeholder">Address</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span class="placeholder">Phone number</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span  pan class="placeholder">City</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="inputWrapper">
+                            <input class="textInput" type="text">
+                            <span class="placeholder">Credit card number</span>
+                            <span class="topLine"></span>
+                            <span class="rightLine"></span>
+                            <span class="bottomLine"></span>
+                            <span class="leftLine"></span>
+                        </div>
+                        <div class="multiInputWrapper">
+                            <div class="splitContainer">
+                                <div class="selectWrapper">
+                                    <p>Province</p>
+                                    <select id="province" name="province">
+                                        <option value="1">Alberta</option>
+                                    </select>
+                                </div>
+                                <div class="inputWrapper">
+                                    <input class="textInput" type="text">
+                                    <span class="placeholder">Zip code</span>
+                                    <span class="topLine"></span>
+                                    <span class="rightLine"></span>
+                                    <span class="bottomLine"></span>
+                                    <span class="leftLine"></span>
+                                </div>
+                            </div>
+                            <div class="splitContainer">
+                                <div class="selectWrapper">
+                                    <p>Exp year</p>
+                                    <select id="expDate" name="expiredDate">
+                                        <option value="1">2021</option>
+                                    </select>
+                                </div>
+                                <div class="inputWrapper">
+                                    <input class="textInput" type="text">
+                                    <span class="placeholder">CVV</span>
+                                    <span class="topLine"></span>
+                                    <span class="rightLine"></span>
+                                    <span class="bottomLine"></span>
+                                    <span class="leftLine"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="confirmContainer">
+                    
+                    </div>
+                </div>
                 <div class="processingButtonBox">
-                    <a href="#" class="orangeBtn" data-ticket ="${title}"><span class="material-icons">
+                    <a href="#" class="orangeBtn ticketBtn" data-ticket ="${title}"><span class="material-icons">
                         credit_card
                     </span>Buy tickets</a>
 
@@ -465,6 +570,7 @@ function createInfoModal(targetMovie){
                     </span> Play trailer</a>
                     <button class="backBtn whiteBorderBtn">Back</button>
                     <button class="nextBtn yellowBorderBtn" disabled >Next</button>
+                    <button class="checkOutBtn yellowBorderBtn" disabled >Check out</button>
                 </div>
             </div>
         </div>
@@ -475,10 +581,25 @@ function createInfoModal(targetMovie){
         targetContent.classList.add('activeModal')
     },10)
     createTrailer(targetMovie)
-    ticketing(targetMovie)
+    ticketing('movie')
     processingBooking()
     selectOption()
     selectPeople()
+    inputTransition()
+}
+
+function inputTransition(){
+    const inputs = document.querySelectorAll('.textInput')
+    inputs.forEach((input)=>{
+        input.addEventListener('focusin',()=>{
+            input.nextElementSibling.classList.add('activeInput')
+        })
+        input.addEventListener('focusout',()=>{
+            if(input.value === ''){
+                input.nextElementSibling.classList.remove('activeInput')
+            }
+        })
+    })
 }
 
 let peopleNumber
@@ -487,6 +608,7 @@ function selectPeople(){
     peopleDropBox = document.querySelector('#people')
     peopleOptions = document.querySelectorAll('#people .optionPeople')
     peopleDropBox.addEventListener('change',()=>{
+        document.querySelector('.modalContainer .nextBtn').disabled = true
         return peopleNumber = peopleDropBox.value
     })
 }
@@ -498,24 +620,30 @@ function selectPeople(){
 const changeBtn = (processStatus)=>{
     const backBtn = document.querySelector('.modalContainer .backBtn')
     const nextBtn = document.querySelector('.modalContainer .nextBtn')
-    const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
+    const ticketBtn = document.querySelector('.modalContainer .ticketBtn')
     const trailerBtn = document.querySelector('.modalContainer .grayBtn')
+    const checkOutBtn = document.querySelector('.modalContainer .checkOutBtn')
     if(processStatus ==='movie'){
         backBtn.classList.add('displayNone')
         nextBtn.classList.add('displayNone')
         ticketBtn.classList.remove('displayNone')
         trailerBtn.classList.remove('displayNone')
-    }else if(processStatus !== 'movie'){
+        checkOutBtn.classList.add('displayNone')
+    }else if(processStatus === 'select_time_seat'){
         ticketBtn.classList.add('displayNone')
         trailerBtn.classList.add('displayNone')
+        checkOutBtn.classList.add('displayNone')
         backBtn.classList.remove('displayNone')
         nextBtn.classList.remove('displayNone')
+    }else if(processStatus === 'check_out'){
+        checkOutBtn.classList.remove('displayNone')
+        nextBtn.classList.add('displayNone')
     }
 }
 
-const ticketing=()=>{
+const ticketing=(status)=>{
     let takingProcessBack =false
-    let processStatus = 'movie'
+    let processStatus = status
     const ticketBtn = document.querySelector('.modalContainer .orangeBtn')
     const backBtn = document.querySelector('.modal .backBtn')
     ticketBtn.onclick=()=>{
@@ -528,9 +656,12 @@ const ticketing=()=>{
         }
     }
     backBtn.onclick=()=>{
+        takingProcessBack = true
         if(processStatus ==='select_time_seat'){
-            takingProcessBack = true
             processStatus = 'movie'
+            activeNavi(processStatus,takingProcessBack)
+        }else if(processStatus ==='check_out'){
+            processStatus = 'select_time_seat'
             activeNavi(processStatus,takingProcessBack)
         }
     }
@@ -556,6 +687,22 @@ function activeNavi(status,backup){
             timing+=50
         }
     }
+    if(status ==='select_time_seat' && backup === true){
+        for(let i=0;i<5; i++){
+            setTimeout(()=>{
+                statusDots[i].classList.add('status')
+            },timing)
+            timing+=50
+        }
+    }
+    if(status ==='check_out' && backup === false){
+        statusDots.forEach((dot)=>{
+            setTimeout(()=>{
+                dot.classList.add('status')
+            },timing)
+            timing+=50
+        })
+    }
     changeBtn(status)
     changeInfo(status, backup)
     blinkStatus(status)
@@ -575,12 +722,19 @@ function blinkStatus(status){
                 dot.classList.add('blink')
             }
         }
+        if(status==='check_out'){
+            if(dot.classList.contains('checkout')){
+                dot.classList.add('blink')
+            }
+        }
     })
 }
 
 function changeInfo(status, backup){
     const movieInfo = document.querySelector('.movieInfoBox')
     const bookingBox = document.querySelector('.bookingBox')
+    const checkOutSection = document.querySelector('.checkOutContainer')
+    const infoContainer = document.querySelector('.infoContainer')
     if(status ==='select_time_seat' && backup === false){
         movieInfo.classList.add('activeProcess')
         setTimeout(()=>{
@@ -590,6 +744,18 @@ function changeInfo(status, backup){
         setTimeout(()=>{
             bookingBox.className = 'bookingBox activeShow'
         },330)
+    }
+    if(status === 'select_time_seat' && backup === true){
+        checkOutSection.classList.remove('activeShow')
+        setTimeout(()=>{
+            checkOutSection.classList.remove('showCheckOut')
+        },300)
+        setTimeout(()=>{
+            infoContainer.classList.remove('displayNone')
+        },300)
+        setTimeout(()=>{
+            infoContainer.classList.remove('activeProcess')
+        },320)
     }
     if(status === 'movie' && backup === true){
         bookingBox.classList.remove('activeShow')
@@ -612,7 +778,8 @@ function processingBooking(){
 
     const currentYear = new Date().getFullYear()
     const currentMonth = new Date().getMonth()
-    bookingMonth.innerText = currentYear + '.' + currentMonth
+    const months =[1,2,3,4,5,6,7,8,9,10,11,12]
+    bookingMonth.innerText = months[currentMonth] + '. ' + currentYear 
     bookingDate.forEach((date)=>{
         index+=1
         const currentDate = new Date().getDate()
@@ -686,7 +853,7 @@ function processingBooking(){
             btn.classList.remove('unavailableTime')
         }
 
-        const seats = document.querySelectorAll('.seat')
+        const seats = document.querySelectorAll('.timeBoxContainer .seat')
         seats.forEach((seat)=>{
             const seatNum = Math.floor(Math.random()*189)
             const calculatedSeat = seatNum % 4
@@ -715,6 +882,7 @@ function selectOption(){
     const dayButtons = document.querySelectorAll('.day')
     movieTimeBtn.forEach((btn)=>{
         btn.addEventListener('click',(e)=>{
+            document.querySelector('.modalContainer .nextBtn').disabled =true
             if(!e.target.classList.contains('unavailableTime')){
                 movieTimeBtn.forEach((btn)=>{
                     btn.classList.remove('activeOption')
@@ -761,6 +929,7 @@ function selectOption(){
             dateIndex = dataset
             targetBtn.classList.add('select')
             siblingBtn[dateIndex].classList.add('select')
+            document.querySelector('.processingButtonBox .nextBtn').disabled = true
             processingBooking()
         })
     }
@@ -1070,21 +1239,80 @@ function activeClickBtn(target){
     let activeNextBtn = false
     target.disabled = false
     target.addEventListener('click',()=>{
-        // document.querySelector('.seatMapModal').click()
+        document.querySelector('.seatMapModal').click()
         activeNextBtn = true
         clickNext(activeNextBtn)
     })
     clickNext(activeNextBtn)
 }
 
+
 function clickNext(action){
+    const nextBtn = document.querySelector('.modalContainer .nextBtn')
+    const optionSection = document.querySelector('.infoContainer')
+    const checkoutSection = document.querySelector('.checkOutContainer')
     if(action === true){
-        document.querySelector('.modalContainer .nextBtn').disabled = false
+        nextBtn.disabled = false
+        nextBtn.addEventListener('click',()=>{
+            optionSection.classList.add('activeProcess')
+            activeNavi('check_out',false)
+            ticketing('check_out')
+            
+            setTimeout(()=>{
+                optionSection.classList.add('displayNone')
+                checkoutSection.classList.add('showCheckout')
+            },300)
+            setTimeout(()=>{
+                checkoutSection.classList.add('activeShow')
+            },320)
+        })
+        collectInfo()
+        
     }else{
-        document.querySelector('.modalContainer .nextBtn').disabled = true
+        nextBtn.disabled = true
+
     }
 }
 
+let gatheredInfo
+function collectInfo(){
+    let bookingInfo
+    const movieMonth = document.querySelector('.bookingDateContainer .currentMonth').textContent
+    const movieDate = document.querySelector('.dayBox .date.select').textContent
+    const movieDay = document.querySelector('.dateBox .day.select').textContent
+    const selectedSeats = document.querySelectorAll('.seat.selected')
+    
+    const movieTitle = document.querySelector('.modal .contentBox .movieTitle').textContent
+    const movieTime = document.querySelector('.timeBtn.activeOption').textContent
+    const movieFullDate = `${movieDate}. ${movieMonth}`
+    const seatNum = []
+    const seatPrice =[]
+    let totalPrice
+    selectedSeats.forEach(seat=>{
+        const seatCode = seat.dataset.seat
+        seatNum.push(seatCode)
+        if(seat.classList.contains('selected')){
+            if(seat.classList.contains('premiumSeat')){
+                const premiumPrice = 25
+                seatPrice.push(premiumPrice)
+            }else{
+                const normalPrice = 15
+                seatPrice.push(normalPrice)
+            }
+                totalPrice = seatPrice.reduce((total,price)=>total+price)
+                document.querySelector('.lastPriceBox .priceBox .price').textContent = ` ${totalPrice}`
+        }
+    })
+    
+    function GatheringMovieInfo(title,date,time,seat,price){
+        this.title = title
+        this.date = date
+        this.time=time
+        this.seat = seat
+        this.price = price
+    }
+    gatheredInfo = new GatheringMovieInfo(movieTitle,movieFullDate,movieTime,seatNum,totalPrice)
+}
 
 // for test
 document.getElementsByClassName('orangeBtn')[0].click()
