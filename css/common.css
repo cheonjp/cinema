@@ -891,6 +891,83 @@ h1:before {
   margin-top: 30px;
 }
 
+.confirmContainer {
+  padding: 20px 40px;
+}
+
+.confirmContainer .subTitle {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.confirmContainer .subTitle .i-receipt {
+  margin-right: 10px;
+}
+
+.confirmContentBox {
+  color: white;
+}
+
+.confirmText {
+  font-weight: bold;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  -webkit-transform: translateY(3px);
+      -ms-transform: translateY(3px);
+          transform: translateY(3px);
+}
+
+.blur {
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
+
+.confirmSeat {
+  width: 60%;
+}
+
+.totalMoney {
+  color: white;
+  text-align: right;
+  line-height: 25px;
+  -webkit-transform: translateY(-27px);
+      -ms-transform: translateY(-27px);
+          transform: translateY(-27px);
+}
+
+.totalMoney .totalInvoice {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.confirmBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 40px;
+}
+
+.confirmBox .confirmContentBox {
+  width: 45%;
+  margin-bottom: 30px;
+}
+
+.confirmContainer .subTitle + p {
+  color: red;
+}
+
 .displayNone {
   display: none !important;
 }
@@ -1535,10 +1612,49 @@ hr {
       align-content: flex-start;
 }
 
+.checkOutContainer .formContainer .btnBox {
+  margin-top: 33px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .checkOutContainer .confirmContainer {
   width: 48%;
   height: 100%;
   background-color: #000A17;
+}
+
+.inputAlert {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: red;
+  padding: 5px 7px;
+  border-radius: 5px;
+}
+
+.inputAlert .i-alert {
+  color: red !important;
+  margin-right: 10px;
+  -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+.inputAlert span {
+  color: white;
+}
+
+.redLine {
+  border: 2px solid red;
 }
 
 .showCheckout {
@@ -1589,9 +1705,9 @@ input ~ .topLine {
   height: 0;
   top: 0;
   left: 0;
-  -webkit-transition: .2s;
-  -o-transition: .2s;
-  transition: .2s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
   background-color: #f1ca0b;
 }
 
@@ -1602,9 +1718,9 @@ input ~ .rightLine {
   height: 0;
   top: 0;
   right: 0;
-  -webkit-transition: .2s;
-  -o-transition: .2s;
-  transition: .2s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
   -webkit-transition-delay: .1s;
        -o-transition-delay: .1s;
           transition-delay: .1s;
@@ -1618,9 +1734,9 @@ input ~ .bottomLine {
   height: 0;
   bottom: 0;
   right: 0;
-  -webkit-transition: .2s;
-  -o-transition: .2s;
-  transition: .2s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
   -webkit-transition-delay: .2s;
        -o-transition-delay: .2s;
           transition-delay: .2s;
@@ -1634,9 +1750,9 @@ input ~ .leftLine {
   height: 0;
   bottom: 0;
   left: 0;
-  -webkit-transition: .2s;
-  -o-transition: .2s;
-  transition: .2s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
   -webkit-transition-delay: .3s;
        -o-transition-delay: .3s;
           transition-delay: .3s;
@@ -1734,6 +1850,24 @@ input ~ .leftLine {
           transform: translate(-10px, -37px);
 }
 
+.inputWrapper:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: -45px;
+  left: 0;
+  color: white;
+  font-size: 13px;
+}
+
+.inputWrapper.zipCode:before {
+  content: 'ex) A1B 2C2';
+}
+
+.inputWrapper.cvv:before {
+  content: 'ex) 467';
+}
+
 .multiInputWrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1754,6 +1888,18 @@ input ~ .leftLine {
           justify-content: space-between;
 }
 
+.multiInputWrapper .splitContainer .selectWrapper.province {
+  width: 85%;
+}
+
+.multiInputWrapper .splitContainer .selectWrapper.province:after {
+  right: 20px !important;
+}
+
+.multiInputWrapper .splitContainer .selectWrapper.province select {
+  width: 95%;
+}
+
 .multiInputWrapper .selectWrapper:after {
   top: 58px !important;
 }
@@ -1769,4 +1915,17 @@ input ~ .leftLine {
       -ms-transform: translateY(43px);
           transform: translateY(43px);
   margin-left: 10px;
+  height: 40px;
+}
+
+.removeBtn {
+  color: #b6b5b5;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: calc(100% - 30px);
+}
+
+.removeBtn span {
+  font-size: 20px;
 }

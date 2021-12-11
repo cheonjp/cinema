@@ -448,7 +448,7 @@ function createInfoModal(targetMovie){
                                         <div>Unavailable seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">12</span>$</div>
+                                        <div>Price: <span class="price">0</span>$</div>
                                     </div>
                                 </div>
                             </div>
@@ -458,7 +458,7 @@ function createInfoModal(targetMovie){
                 <div class="checkOutContainer">
                     <div class="formContainer">
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
+                            <input id="name" class="textInput" type="text">
                             <span class="placeholder">Full Name</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -474,7 +474,7 @@ function createInfoModal(targetMovie){
                             </div>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
+                            <input id="email" class="textInput" type="text">
                             <span class="placeholder">Email</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -482,7 +482,7 @@ function createInfoModal(targetMovie){
                             <span class="leftLine"></span>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput"t type="text">
+                            <input id="name_on_card" class="textInput"t type="text">
                             <span class="placeholder">Name on card</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -490,7 +490,7 @@ function createInfoModal(targetMovie){
                             <span class="leftLine"></span>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
+                            <input id="address" class="textInput" type="text">
                             <span class="placeholder">Address</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -498,7 +498,7 @@ function createInfoModal(targetMovie){
                             <span class="leftLine"></span>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
+                            <input id="phoneNumber" class="textInput" type="text" maxlength="14">
                             <span class="placeholder">Phone number</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -506,15 +506,15 @@ function createInfoModal(targetMovie){
                             <span class="leftLine"></span>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
-                            <span  pan class="placeholder">City</span>
+                            <input id="city" class="textInput" type="text">
+                            <span class="placeholder">City</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
                             <span class="bottomLine"></span>
                             <span class="leftLine"></span>
                         </div>
                         <div class="inputWrapper">
-                            <input class="textInput" type="text">
+                            <input id="cardNumber" class="textInput" type="text" maxlength ="19">
                             <span class="placeholder">Credit card number</span>
                             <span class="topLine"></span>
                             <span class="rightLine"></span>
@@ -523,14 +523,26 @@ function createInfoModal(targetMovie){
                         </div>
                         <div class="multiInputWrapper">
                             <div class="splitContainer">
-                                <div class="selectWrapper">
+                                <div class="selectWrapper province">
                                     <p>Province</p>
                                     <select id="province" name="province">
-                                        <option value="1">Alberta</option>
+                                        <option value="Alberta">Alberta</option>
+                                        <option value="British Columbia">British Columbia</option>
+                                        <option value="Manitoba">Manitoba</option>
+                                        <option value="New Brunswick">New Brunswick</option>
+                                        <option value="Newfoundland">Newfoundland</option>
+                                        <option value="Northwest Territories">Northwest Territories</option>
+                                        <option value="Nova Scotia">Nova Scotia</option>
+                                        <option value="Nunavut">Nunavut</option>
+                                        <option value="Ontario">Ontario</option>
+                                        <option value="Prince Edward Island">Prince Edward Island</option>
+                                        <option value="Quebec">Quebec</option>
+                                        <option value="Saskatchewan">Saskatchewan</option>
+                                        <option value="Yukon">Yukon</option>
                                     </select>
                                 </div>
-                                <div class="inputWrapper">
-                                    <input class="textInput" type="text">
+                                <div class="inputWrapper zipCode">
+                                    <input id="zipCode" class="textInput" type="text" maxlength ="7">
                                     <span class="placeholder">Zip code</span>
                                     <span class="topLine"></span>
                                     <span class="rightLine"></span>
@@ -542,11 +554,10 @@ function createInfoModal(targetMovie){
                                 <div class="selectWrapper">
                                     <p>Exp year</p>
                                     <select id="expDate" name="expiredDate">
-                                        <option value="1">2021</option>
                                     </select>
                                 </div>
-                                <div class="inputWrapper">
-                                    <input class="textInput" type="text">
+                                <div class="inputWrapper cvv">
+                                    <input id="cvv" class="textInput" type="text" maxlength="4">
                                     <span class="placeholder">CVV</span>
                                     <span class="topLine"></span>
                                     <span class="rightLine"></span>
@@ -555,9 +566,55 @@ function createInfoModal(targetMovie){
                                 </div>
                             </div>
                         </div>
+                        <div class="btnBox">
+                            <button class="yellowBorderBtn submitBtn">Submit</button>
+                        </div>
                     </div>
                     <div class="confirmContainer">
-                    
+                        <div class="subTitle">
+                            <span class="material-icons i-receipt">
+                                receipt_long
+                            </span>
+                            <span>Confirmation</span>
+                        </div>
+                        <p>* Please check the movie reservation carefully before checking out.</p>
+
+                        <div class="confirmBox">
+                            <div class="confirmContentBox">
+                                <span>Movie Title : </span><span class="confirmText confirmTitle">Spider Man</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Date : </span><span class="confirmText confirmDate">10. 16. 2021</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Movie Time : </span><span class="confirmText confirmTime">13 : 30</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Seat : </span><span class="confirmText confirmSeat">A-13, A-10</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Name : </span><span class="confirmText confirmName">Jeongpil</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Email : </span><span class="confirmText confirmEmail">cjp@gmail.com</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Address : </span><span class="confirmText confirmAddress">Abc Ave 12</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>City : </span><span class="confirmText confirmCity">Kelowna</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Province : </span><span class="confirmText confirmProvince">Britich Columbia</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Zip Code : </span><span class="confirmText confirmZipCode">V1Y 2R3</span>
+                            </div>
+                            <div class="confirmContentBox">
+                                <span>Payment Method : </span><span class="confirmText confirmPayment">Credit card</span>
+                            </div>
+                        </div>
+                        <div class="totalMoney">Sub total <span class="ticketMoney">20$</span> + PST <span class="pst">3$</span> + GST <span class="gst">2$</span><br> Total invoice : <span class="totalInvoice">30</span>$</div>
                     </div>
                 </div>
                 <div class="processingButtonBox">
@@ -586,6 +643,231 @@ function createInfoModal(targetMovie){
     selectOption()
     selectPeople()
     inputTransition()
+    checkFormValidation()
+    displayExp()
+    deleteValue()
+}
+
+function displayExp(){
+    const input = document.querySelector('#expDate')
+    let year = new Date().getFullYear()
+    let index = 0
+    
+    for(let i=0;i<10; i++){
+        const option = document.createElement('option')
+        const finalYear = year+index
+        option.innerHTML = `${finalYear}`
+        option.value=finalYear
+        input.appendChild(option)
+        index++
+    }
+}
+
+let activeRemoveAlert
+function checkFormValidation(){
+    const name = document.querySelector('#name')
+    const email = document.querySelector('#email')
+    const nameOnCard = document.querySelector('#name_on_card')
+    const address = document.querySelector('#address')
+    const phoneNumber = document.querySelector('#phoneNumber')
+    const city = document.querySelector('#city')
+    const cardNumber = document.querySelector('#cardNumber')
+    const zipCode = document.querySelector('#zipCode')
+    const cvv = document.querySelector('#cvv')
+    const textInputs = document.querySelectorAll('.textInput')
+    const submitBtn = document.querySelector('.submitBtn')
+
+    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const zipCodeRegex = /^[a-z]{1}[0-9]{1}[a-z]{1}\s?[0-9]{1}[a-z]{1}[0-9]{1}$/i
+    const cvvRegex = /^[0-9]{3,4}$/
+    
+    let phoneValidation
+    let cardValidation
+    
+    
+    submitBtn.addEventListener('click',()=>{
+        const inputAlerts = document.querySelectorAll('.inputAlert')
+        if(inputAlerts.length === 0){
+            
+            let activeGather = true
+            textInputs.forEach(input=>{
+                const inputWrapper = input.parentElement
+                const alertBox = document.createElement('div')
+
+                const emailValidation = emailRegex.test(email.value)
+                const zipValidation = zipCodeRegex.test(zipCode.value)
+                const cvvValidation = cvvRegex.test(cvv.value)
+    
+                if(input.value ===''){
+                    alertBox.innerHTML = `
+                    <span>Empty</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+                if(email.value !=="" && emailValidation === false && input.getAttribute("id") === 'email'){
+                    alertBox.innerHTML = `
+                    <span>Wrong Format</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+                if(phoneNumber.value !=="" && phoneValidation() === false && input.getAttribute("id")==="phoneNumber"){
+                    alertBox.innerHTML = `
+                    <span>Wrong Format</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+                if(cardNumber.value !=="" && cardValidation() === false && input.getAttribute("id")==="cardNumber"){
+                    alertBox.innerHTML = `
+                    <span>Wrong Format</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+                if(zipCode.value !=="" && zipValidation === false && input.getAttribute("id") === "zipCode"){
+                    alertBox.innerHTML = `
+                    <span>Wrong Format</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+                if(cvv.value !=="" && cvvValidation === false && input.getAttribute("id")==="cvv"){
+                    alertBox.innerHTML = `
+                    <span>Wrong Format</span>
+                    `
+                    alertBox.classList.add('inputAlert')
+                    inputWrapper.appendChild(alertBox)
+                    input.classList.add('redLine')
+                    activeGather=false
+                }
+            })
+            
+            confirmInfo(activeGather)
+        }
+        
+        removeAlert()
+       
+    })
+
+    phoneNumber.onkeyup=(e)=>{
+        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+        if(phoneRegex.test(phoneNumber.value)){
+            let finalNumber = phoneNumber.value.replace(phoneRegex, "($1) $2-$3")
+            phoneNumber.value = finalNumber
+            phoneValidation = () =>{
+                return true
+            }
+        }else{
+            phoneValidation = ()=>{
+                return false
+            }
+        }
+    }
+
+    cardNumber.onkeyup=(e)=>{
+        const numberRegex =/^([0-9]{4})-?([0-9]{4})-?([0-9]{4})-?([0-9]{4})$/
+        if(numberRegex.test(e.target.value)){
+            let finalNumber = e.target.value.replace(numberRegex, "$1-$2-$3-$4")
+            e.target.value = finalNumber
+            cardValidation = ()=>{
+                return true
+            }
+        }else{
+            cardValidation = ()=>{
+                return false
+            }
+        }
+    }
+    
+}
+
+function confirmInfo(action){
+    if(action === true){
+        const name = document.querySelector('#name').value
+        const email = document.querySelector('#email').value
+        const nameOnCard = document.querySelector('#name_on_card').value
+        const address = document.querySelector('#address').value
+        const phoneNumber = document.querySelector('#phoneNumber').value
+        const city = document.querySelector('#city').value
+        const cardNumber = document.querySelector('#cardNumber').value
+        const zipCode = document.querySelector('#zipCode').value
+        const cvv = document.querySelector('#cvv').value
+        const province = document.querySelector('#province').value
+        const expYear = document.querySelector('#expDate').value
+
+        gatheredInfo.name = name
+        gatheredInfo.email = email
+        gatheredInfo.nameOnCard = nameOnCard
+        gatheredInfo.address = address
+        gatheredInfo.phoneNumber = phoneNumber
+        gatheredInfo.city = city
+        gatheredInfo.cardNumber = cardNumber
+        gatheredInfo.zipCode = zipCode
+        gatheredInfo.cvv = cvv
+        gatheredInfo.province = province
+        gatheredInfo.expYear = expYear
+        console.log(gatheredInfo)
+        
+    }
+}
+
+function deleteValue(){
+    inputs = document.querySelectorAll('.textInput')
+    inputs.forEach((input)=>{
+        input.addEventListener('keyup',()=>{
+            const parent = input.parentElement
+            const closeBtn = document.createElement('span')
+            const target = parent.querySelector('.removeBtn')
+            if(input.value !=="" && target === null){
+                closeBtn.innerHTML =`
+                <span class="material-icons">
+                    cancel
+                </span>`
+                closeBtn.classList.add('removeBtn')
+                parent.appendChild(closeBtn)
+                closeBtn.addEventListener('click',()=>{
+                    input.value=""
+                    const removeBtn = parent.querySelector('.removeBtn')
+                    parent.removeChild(removeBtn)
+                    const placeHolder = parent.querySelector('.placeholder')
+                    placeHolder.classList.remove('activeInput')
+                })
+            }
+            if(input.value ===""){
+                const removeBtn = parent.querySelector('.removeBtn')
+                parent.removeChild(removeBtn)
+            }
+        })
+    })
+}
+
+function removeAlert(){
+   const alertBoxes = document.querySelectorAll('.inputAlert')
+   alertBoxes.forEach((box) =>{
+       const input = box.parentElement.querySelector('.textInput')
+       const wrapper = box.parentElement
+  
+       input.addEventListener('focusin',()=>{
+           if(input.classList.contains('redLine')){
+               const target = wrapper.querySelector('.inputAlert')
+               input.classList.remove('redLine')
+               wrapper.removeChild(target)
+            }
+    })
+   })
+    
 }
 
 function inputTransition(){
@@ -688,6 +970,10 @@ function activeNavi(status,backup){
         }
     }
     if(status ==='select_time_seat' && backup === true){
+        console.log('test')
+        statusDots.forEach((dot)=>{
+            dot.classList.remove('status')
+        })
         for(let i=0;i<5; i++){
             setTimeout(()=>{
                 statusDots[i].classList.add('status')
@@ -1317,7 +1603,6 @@ function collectInfo(){
 // for test
 document.getElementsByClassName('orangeBtn')[0].click()
 // document.getElementById('searchSeat').click()
-
 
 
 
