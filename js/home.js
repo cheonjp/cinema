@@ -571,6 +571,15 @@ function createInfoModal(targetMovie){
                         </div>
                     </div>
                     <div class="confirmContainer">
+                        <div class="coveredLayer">
+                            Please fill the form out and submit it
+                            <div class="loader">
+                              <svg class="circular-loader"viewBox="25 25 50 50" >
+                                <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#f96400" stroke-width="2" />
+                              </svg>
+                            </div>
+                            </div>
+
                         <div class="subTitle">
                             <span class="material-icons i-receipt">
                                 receipt_long
@@ -611,10 +620,10 @@ function createInfoModal(targetMovie){
                                 <span>Zip Code : </span><span class="confirmText confirmZipCode">V1Y 2R3</span>
                             </div>
                             <div class="confirmContentBox">
-                                <span>Payment Method : </span><span class="confirmText confirmPayment">Credit card</span>
+                                <span>Payment : </span><span class="confirmText confirmPayment">Credit card</span>
                             </div>
                         </div>
-                        <div class="totalMoney">Sub total <span class="ticketMoney">20$</span> + PST <span class="pst">3$</span> + GST <span class="gst">2$</span><br> Total invoice : <span class="totalInvoice">30</span>$</div>
+                        <div class="totalMoney">Sub total <span class="ticketMoney"></span>$ + PST <span class="pst">10%</span> + GST <span class="gst">5%</span><br> Total invoice : <span class="totalInvoice"></span>$</div>
                     </div>
                 </div>
                 <div class="processingButtonBox">
@@ -637,6 +646,7 @@ function createInfoModal(targetMovie){
     setTimeout(function(){
         targetContent.classList.add('activeModal')
     },10)
+
     createTrailer(targetMovie)
     ticketing('movie')
     processingBooking()
@@ -807,6 +817,30 @@ function confirmInfo(action){
         const province = document.querySelector('#province').value
         const expYear = document.querySelector('#expDate').value
 
+        const coveredLayer = document.querySelector('.coveredLayer')
+        const loader = document.querySelector('.loader')
+
+        const confirmTitle = document.querySelector('.confirmTitle')
+        const confirmDate = document.querySelector('.confirmDate')
+        const confirmTime = document.querySelector('.confirmTime')
+        const confirmEmail = document.querySelector('.confirmEmail')
+        const confirmAddress = document.querySelector('.confirmAddress')
+        const confirmCity = document.querySelector('.confirmCity')
+        const confirmProvince = document.querySelector('.confirmProvince')
+        const confirmZipCode = document.querySelector('.confirmZipCode')
+        const confirmPayment = document.querySelector('.confirmPayment')
+        const confirmSeat = document.querySelector('.confirmSeat')
+        const confirmInvoice = document.querySelector('.totalInvoice')
+        const confirmMoney = document.querySelector('.ticketMoney')
+        const totalMoney = ((gatheredInfo.price)*(15/100)) + gatheredInfo.price
+
+        loader.classList.add('activeLoader')
+        setTimeout(()=>{
+            loader.classList.remove('activeLoader')
+            coveredLayer.style.display='none'
+        },2000)
+        document.querySelector('.checkOutBtn').disabled = false
+
         gatheredInfo.name = name
         gatheredInfo.email = email
         gatheredInfo.nameOnCard = nameOnCard
@@ -818,7 +852,28 @@ function confirmInfo(action){
         gatheredInfo.cvv = cvv
         gatheredInfo.province = province
         gatheredInfo.expYear = expYear
-        console.log(gatheredInfo)
+
+        
+        confirmTitle.textContent = gatheredInfo.title
+        confirmDate.textContent = gatheredInfo.date
+        confirmTime.textContent = gatheredInfo.time
+        confirmEmail.textContent = gatheredInfo.email
+        confirmAddress.textContent = gatheredInfo.address
+        confirmCity.textContent = gatheredInfo.city
+        confirmProvince.textContent = gatheredInfo.province
+        confirmZipCode.textContent = gatheredInfo.zipCode
+        confirmSeat.textContent = gatheredInfo.seat
+        confirmMoney.textContent = gatheredInfo.price
+        confirmInvoice.textContent = totalMoney.toFixed(2)
+
+
+
+        const texts = document.querySelectorAll('.confirmText')
+        texts.forEach(text=>{
+            const category = text.previousElementSibling
+            const categoryWidth = category.offsetWidth
+            text.style.width = `calc(100% - ${categoryWidth+5}px)`
+        })
         
     }
 }
@@ -945,6 +1000,8 @@ const ticketing=(status)=>{
         }else if(processStatus ==='check_out'){
             processStatus = 'select_time_seat'
             activeNavi(processStatus,takingProcessBack)
+            document.querySelector('.checkOutBtn').disabled = true
+            document.querySelector('.coveredLayer').style.display = 'flex'
         }
     }
     changeBtn(processStatus)
@@ -1601,8 +1658,7 @@ function collectInfo(){
 }
 
 // for test
-document.getElementsByClassName('orangeBtn')[0].click()
-// document.getElementById('searchSeat').click()
+// document.getElementsByClassName('orangeBtn')[0].click()
 
 
 
