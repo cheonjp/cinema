@@ -461,6 +461,8 @@ window.onclick=(e)=>{
     closeSubModal()
   }else if(e.target.matches('.seatMapModal')){
     closeSeatModal()
+  }else if(e.target.matches('.closeModalBtn')){
+    closeModal()
   }
   closeBtn()
 }

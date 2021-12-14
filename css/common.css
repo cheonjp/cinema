@@ -989,6 +989,35 @@ h1:before {
   color: red;
 }
 
+.succeedAlert {
+  padding: 20px;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 400px;
+  height: 150px;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+}
+
+.succeedAlert p {
+  text-align: center;
+  color: #838282;
+}
+
 .displayNone {
   display: none !important;
 }

@@ -297,7 +297,7 @@ function createTrailer(targetMovie){
 }
 
 function createInfoModal(targetMovie){
-    const {title,image,text,trailer,description,length,icon,actor}=targetMovie
+    const {title,image,text,trailer,description,length,icon,actor,poster}=targetMovie
     const targetContent = document.createElement('div')
     targetContent.innerHTML=`
         <div class="modalContainer activeModal">
@@ -320,7 +320,7 @@ function createInfoModal(targetMovie){
                     <div class="process checkout"></div>
                 </div>
                 <div class="infoContainer">
-                    <div class="movieImg" style="background-image:url(${image})"></div>
+                    <div class="movieImg" style="background-image:url(${poster})"></div>
                     <div class="movieInfoBox">
                         <div class="infoTopPart">
                             <div class="movieLength">Movie length: <span>${length}</span></div>
@@ -876,6 +876,7 @@ function confirmInfo(action){
         })
         
     }
+    
 }
 
 function deleteValue(){
@@ -975,7 +976,32 @@ const changeBtn = (processStatus)=>{
     }else if(processStatus === 'check_out'){
         checkOutBtn.classList.remove('displayNone')
         nextBtn.classList.add('displayNone')
+        functionalBtn(checkOutBtn)
     }
+}
+
+function functionalBtn(element){
+    element.addEventListener('click',()=>{
+        const target = document.querySelector('.subModal')
+        if(target === null){
+            const subModal = document.createElement('div')
+            subModal.innerHTML =`
+                <div class="succeedAlert">
+                    <p>It successfully booked. Please check your email.</p>
+                    <div>
+                        <button class="orangeBorderBtn closeModalBtn">Confirm</button>
+                    </div>
+                </div>
+            `
+            subModal.classList.add('subModal')
+            const parent = document.querySelector('.modalContainer')
+            parent.appendChild(subModal)
+            setTimeout(()=>{
+                subModal.classList.add('activeModal')
+
+            },20)
+        }
+    })
 }
 
 const ticketing=(status)=>{

@@ -738,6 +738,22 @@ h1{
 .confirmContainer .subTitle + p{
     color:red;
 }
+.succeedAlert{
+    padding:20px;
+    background:white;
+    display:flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    align-items: flex-start;
+    width:400px;
+    height:150px;
+    transition:.3s;
+    transform:scale(0);
+    p{
+        text-align: center;
+        color:rgb(131, 130, 130);
+    }
+}
 
 .displayNone{
     display:none !important;
