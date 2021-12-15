@@ -54,7 +54,7 @@
         const posters = document.querySelectorAll('.heroItem')
         posters.forEach(function(poster){
             poster.classList.add(`item${classNum}`)
-            poster.style.backgroundImage=`url(../img/hero_${classNum++}.jpg)`
+            poster.style.backgroundImage=`url(./img/hero_${classNum++}.jpg)`
         })
     }
 
@@ -1414,7 +1414,7 @@ function createAlert(targetClass, targetMessage,className){
     const targetBox = document.querySelector(targetClass)
     const alertElement = document.createElement('div')
     alertElement.innerHTML = `
-            <img src="../img/finger.svg">
+            <img src="./img/finger.svg">
             <span>${targetMessage}</span>
     `
     alertElement.classList.add('alertBox',className)
