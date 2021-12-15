@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <title>Document</title>
+    <script>
+        const heroMovies = [
+    {
+        
+        title:'Spider Man 4',
+        image:'../img/hero_1.jpg',
+        text:'The most dangerous thing is coming. The most exciting series finally released.',
+        trailer:'../video/spiderman.mp4',
+        description:'Peter Parker as he prepares for his future with Mary Jane Watson, while facing three new villains: Uncle Ben\'s true killer, Flint Marko, who becomes Sandman after a freak accident; Harry Osborn, his former friend, who is now aware of Peter\'s identity and ...',
+        length:'127 Min',
+        icon:['i-adult', 'Violence','Sexual oriented'],
+        actor:'Lion Mack, Jone Jons, Mark Hunt',
+        poster:'../img/poster_1.jpg'
+    },
+    {
+      
+        title:'Lost',
+        image:'../img/hero_2.jpg',
+        text:'Now, I bet you will see the most horrified, scared movie in this year.',
+        trailer:'../video/lost.mp4',
+        description:'While searching for their missing archaeology professor, a group of students discovers a cave where time passes differently than it does on the surface.',
+        length:'108 Min',
+        icon:['i-adolescent','Violence','Horror'],
+        actor:'Tom Cruise, James Willis, Matt Hardy',
+        poster:'../img/poster_2.jpg'
+    },
+    {
+       
+        title:'unforgettable Memory',
+        image:'../img/hero_3.jpg',
+        text:'I met her once, but I can feel something odd. Is it love?',
+        trailer:'../video/memory.mp4',
+        description:'Unforgettable Memory is a holiday music special full of breathtaking performances and heart-warming inspirational Christmas themes, hosted and performed by American pop violinist Lindsey Stirling. Stunning production quality showcases favorites like “Angels We Have Heard on High,” “All I Want for Christmas is You,” “Let It Snow,” and “Dance of the Sugar Plum Fairy.” Filmed exclusively for this special, the festive performances include elaborate dance numbers, over-the-top acrobatics, and live on-site performances in her fans’ neighborhoods to spread Christmas cheer.',
+        length:'121 Min',
+        icon:['i-all','Romance','Comedy'],
+        actor:'Londa Rousy, Missha Tate, Black Jack',
+        poster:'../img/poster_3.jpg'
+    }
+];
+    </script>
+</head>
+
+<body>
+    <template-header></template-header>
+    <div class="mainSection">
+        <div class="heroContainer">
+            <div class="arrow prevBtn">
+                <span class="material-icons">
+                    arrow_back_ios_new
+                    </span>
+            </div>
+            <div class="arrow nextBtn">
+                <span class="material-icons">
+                    arrow_forward_ios
+                    </span>
+            </div>
+            <div class="dotBox">
+                <span class="dot activeDot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="heroPageSection">
+            </div>
+            <div class="gaugeContainer">
+                <div class="gauge"></div>
+            </div>
+        </div>
+        <section class="rewardingSection">
+            <h1>AWARDS</h1>
+            <p class="t-white"><span style="color:#f1ca0b; font-weight: bold;">CINEMA WORLD</span> is the best movie cinema in Canada. We are not just saying it, we prove why we are the best cinema.</p>
+            <div class="awardBox">
+                <div class="awardBoxItem item1">
+                    <img class="i-award" src="../img/icon_award.svg" alt="award icon">
+                        <p class="awardTitle">
+                            The cleanest cinema (2019)
+                        </p>
+                        <p class="awardText">
+                            Cinema World in 2019, our cinema was selected by customers. Association of Cinema awarded to us the biggiest award.
+                        </p>
+                        <div class="iconBox">
+                            <span class="material-icons i-star">
+                                star
+                                </span>
+                            <span class="material-icons i-star">
+                                star
+                                </span>
+                            <span class="material-icons i-star">
+                                star
+                                </span>
+                            <span class="material-icons i-star">
+                                star
+                                </span>
+                            <span class="material-icons i-star">
+                                star
+                                </span>
+                        </div>
+                </div>
+                <div class="awardBoxItem item2">
+                    <img class="i-award" src="../img/icon_award.svg" alt="award icon">
+                    <p class="awardTitle">
+                        The Greatest Service Award (2020)
+                    </p>
+                
+                </div>
+                <div class="awardBoxItem item3">
+                    <img class="i-award" src="../img/icon_award.svg" alt="award icon">
+                </div>
+                <div class="awardBoxItem item4">
+                    <img class="i-award" src="../img/icon_award.svg" alt="award icon">
+                </div>
+            </div>
+            <div class="quoteText">"This cinema is one of the <span>cleanest, greatest</span> one with perfect services ever"</div>
+            <div>- Jone Cena -</div>
+        </section>
+        <section class="introSection">
+            <h1>INTRODUCTION</h1>
+            <p class="t-white">Why do customers think Cinema World is the best? Let's see why it is.</p>
+            <div class="introBox">
+                <h2>Greatest Service</h2>
+                <div class="introBoxContainer">
+                    <div class="imgBox">
+                        <img class="mainImg" src="../img/intro_0.jpg" alt="">
+                        <div class="subImgBox">
+                            <img class="subImg" src="../img/intro_1.jpg" alt="">
+                            <img class="subImg" src="../img/intro_2.jpg" alt="">
+                            <img class="subImg" src="../img/intro_3.jpg" alt="">
+                        
+                        </div>
+                        <div class="imgText">
+                            Test
+                        </div>
+                    </div>
+                    <div class="IntroBoxTextBox Calibri">
+                        We provide you with the greatest service. Not only watching movie but also getting great service is important.
+                        Cinema World provides you with wider seat, wider screen, and high technology of sound.
+                        during watching movie, you will have awesome snacks, special popcorns which All cooked by organic, domestic ingredients.
+                        In addition to our great service, the cinema, location is middle of downtown,
+                        accessibility is top of its advantage. You will access great restaurants, parks, etc near the cinema so that you can drink, have dinner, hiking,
+                        whatever you think. About technology, Cinema World use M3 glass screen, that provides you with much more vivid display
+                        quality, in other word, you will concentrate on movie more than other cinemas. 
+                    </div>
+                </div>
+                <div class="decorationBox">
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                </div>
+            </div>
+            <div class="introBox">
+                <h2>Historical Cinema</h2>
+                <div class="introBoxContainer">
+                    <div class="imgBox">
+                        <img class="mainImg" src="../img/intro_4.jpg" alt="">
+                        <div class="subImgBox">
+                            <img class="subImg" src="../img/intro_5.jpg" alt="">
+                            <img class="subImg" src="../img/intro_6.jpg" alt="">
+                            <img class="subImg" src="../img/intro_7.jpg" alt="">
+                        </div>
+                        <div class="imgText">
+                            The street the cinema was on in 1960s
+                        </div>
+                    </div>
+                    <div class="IntroBoxTextBox Calibri">
+                        Cinema World is historical, growing with Vancouver since 1960. It has been with you over 60 years to show better movies, 
+                        provide better snacks, service, and so on. We started with very little fund at old private house, invited our
+                        acquaintances, relatives, friends then known as friendly cinema in Vancouver.
+                        Since 1960s, When Cinema World was built in down town, town has been developed around the cinema. And now, citizens know
+                        how Cinema World historical is. It is a heart, and the symbol of Vancouver.  
+                    </div>
+                </div>
+                <div class="decorationBox">
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                    <div class="decorationDot"></div>
+                </div>
+            </div>
+        </section>
+        <!-- <div class="modal">
+            <div class="modalContainer">
+                <span class="material-icons i-close">
+                    close
+                    </span>
+                <div class="contentBox">
+                    <div class="titleContainer">
+                        <h2 class="movieTitle">Movie title</h2>
+                    </div>
+                    <div class="navigation">
+                        <div class="process movie status"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process selection"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process"></div>
+                        <div class="process checkout"></div>
+                    </div>
+                    <div class="infoContainer">
+                        <div class="movieImg"></div>
+                        <div class="movieInfoBox">
+                            <div class="infoTopPart">
+                                <div class="movieLength">Movie length: <span>127</span> Min</div>
+                                <div class="iconBox">
+                                    <span class="i-adult"></span>
+                                    <span class="genreInfo">Violence</span>
+                                    <span class="genreInfo"> sexually oriented</span>
+                                </div>
+                            </div>
+                            <div class="infoSubtitle">Cast</div>
+                            <div class="cast">Peter Packer, Lion Mack, Mark Hunt</div>
+                            <div class="infoSubtitle">Synopsis</div>
+                            <div class="movieDescriction">
+                                'Peter Parker as he prepares for his future with Mary Jane Watson, while facing three new villains: Uncle Ben\'s true killer, Flint Marko, who becomes Sandman after a freak accident; Harry Osborn, his former friend, who is now aware of Peter\'s identity and ...
+                            </div>
+                        </div>
+
+
+                        <div class="bookingBox">
+                            <div class="bookingDateContainer section">
+                                <div class="currentMonth">
+                                    2021.09
+                                </div>
+                                <div class="dateContainer">
+                                    <div class="dateBox">
+                                        <span class="date select">Mon</span>
+                                        <span class="date">Tus</span>
+                                        <span class="date">Wed</span>
+                                        <span class="date">Thu</span>
+                                        <span class="date">Fri</span>
+                                        <span class="date">Sat</span>
+                                        <span class="date">Sun</span>
+                                        <span class="date">Mon</span>
+                                        <span class="date">Tus</span>
+                                        <span class="date">Wed</span>
+                                    </div>
+                                    <div class="dayBox">
+                                        <span class="day select">1</span>
+                                        <span class="day">2</span>
+                                        <span class="day">3</span>
+                                        <span class="day">4</span>
+                                        <span class="day">5</span>
+                                        <span class="day">6</span>
+                                        <span class="day">7</span>
+                                        <span class="day">8</span>
+                                        <span class="day">9</span>
+                                        <span class="day">10</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selectTimeContainer section">
+                                <div class="titleBox">
+                                    <span class="material-icons i-time">
+                                        schedule
+                                        </span>
+                                        <span>Select Movie time</span>
+                                </div>
+                                <div class="timeBoxContainer">
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                    <div class="timeBtnBox">
+                                        <div class="timeBtn">12:18</div>
+                                        <div class="seat">16 Seats</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selectSeatContainer section">
+                                <div class="titleBox">
+                                    <span class="material-icons i-chair">
+                                        chair
+                                        </span>
+                                    <span>Select seat</span>
+                                </div>
+                                <div class="seatContainer">
+                                    <div class="seatColumn">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                        <select id="people" name="" id="">
+                                            <option value="People">1</option>
+                                            <option value="People">2</option>
+                                            <option value="People">3</option>
+                                            <option value="People">4</option>
+                                            <option value="People">5</option>
+                                            <option value="People">6</option>
+                                            <option value="People">7</option>
+                                            <option value="People">8</option>
+                                            <option value="People">9</option>
+                                            <option value="People">10</option>
+                                            <option value="People" selected disabled>People</option>
+                                        </select>
+                                    </div>
+                                    <div class="seatColumn">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                        <button id="searchSeat" class="yellowBorderBtn">
+                                            <span class="material-icons i-seat">
+                                                airline_seat_recline_normal
+                                                </span>
+                                                Find available seat
+                                        </button>
+                                    </div>
+                                    <div class="seatColumn lastPriceBox">
+                                        <div class="seatGradeBox">
+                                            <div class="gradeBox"></div>
+                                            <div>Normal seats</div>
+                                        </div>
+                                        <div class="priceBox">
+                                            <div>Price: <span class="price">12</span>$</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="processingButtonBox">
+                        <button class="backBtn whiteBorderBtn">Back</button>
+                        <button class="nextBtn yellowBorderBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <template-footer></template-footer>
+    </div>
+    <script src="../js/home.js"></script>
+    <script src="../js/common.js"></script>
+</body>
+
+</html>
