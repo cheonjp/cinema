@@ -207,13 +207,13 @@ h1{
     }
 }
 .social_1{
-    background-image: url(../img/icon_facebook.svg);
+    background-image: url(./img/icon_facebook.svg);
 }
 .social_2{
-    background-image: url(../img/icon_instagram.svg);
+    background-image: url(./img/icon_instagram.svg);
 }
 .social_3{
-    background-image: url(../img/icon_twitter.svg);
+    background-image: url(./img/icon_twitter.svg);
 }
 
 .modal{
@@ -369,7 +369,7 @@ h1{
         .movieImg{
             width:40%;
             height:100%;
-            // background-image:url(../img/hero_1.jpg);
+            // background-image:url(./img/hero_1.jpg);
             background-size:cover;
             background-position: center center;
         }
@@ -1372,15 +1372,15 @@ input ~ .bottomLine{
             }
         }
         .visa{
-            background-image: url('../img/visa.svg');
+            background-image: url('./img/visa.svg');
            
         }
         .master{
-            background-image: url('../img/master.svg');
+            background-image: url('./img/master.svg');
            
         }
         .express{
-            background-image: url('../img/express.svg');
+            background-image: url('./img/express.svg');
            
         }
     }
