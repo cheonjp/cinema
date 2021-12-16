@@ -128,19 +128,19 @@
 }
 
 .rewardingSection .awardBox .awardBoxItem.item1 {
-  background-image: url(./img/award_1.jpg);
+  background-image: url(../img/award_1.jpg);
 }
 
 .rewardingSection .awardBox .awardBoxItem.item2 {
-  background-image: url(./img/award_2.jpg);
+  background-image: url(../img/award_2.jpg);
 }
 
 .rewardingSection .awardBox .awardBoxItem.item3 {
-  background-image: url(./img/award_3.jpg);
+  background-image: url(../img/award_3.jpg);
 }
 
 .rewardingSection .awardBox .awardBoxItem.item4 {
-  background-image: url(./img/award_4.jpg);
+  background-image: url(../img/award_4.jpg);
 }
 
 .rewardingSection .awardBox .i-award {

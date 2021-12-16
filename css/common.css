@@ -1882,15 +1882,15 @@ input ~ .leftLine {
 }
 
 .checkOutContainer .cardBox .visa {
-  background-image: url("./img/visa.svg");
+  background-image: url("../img/visa.svg");
 }
 
 .checkOutContainer .cardBox .master {
-  background-image: url("./img/master.svg");
+  background-image: url("../img/master.svg");
 }
 
 .checkOutContainer .cardBox .express {
-  background-image: url("./img/express.svg");
+  background-image: url("../img/express.svg");
 }
 
 .activeInput {
