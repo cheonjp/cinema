@@ -54,7 +54,7 @@
         const posters = document.querySelectorAll('.heroItem')
         posters.forEach(function(poster){
             poster.classList.add(`item${classNum}`)
-            poster.style.backgroundImage=`url(../img/hero_${classNum++}.jpg)`
+            poster.style.backgroundImage=`url(./img/hero_${classNum++}.jpg)`
         })
     }
 
