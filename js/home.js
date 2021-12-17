@@ -406,10 +406,10 @@ function createInfoModal(targetMovie){
                                 <div class="seatColumn">
                                     <div class="seatGradeBox">
                                         <div class="gradeBox"></div>
-                                        <div>Normal seats</div>
+                                        <div>Regular seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">15</span>$</div>
+                                        <div>Price: $ <span class="price">15</span></div>
                                     </div>
                                     <div class="selectWrapper">
                                         <select id="people" name="peopleNumber">
@@ -433,13 +433,13 @@ function createInfoModal(targetMovie){
                                         <div>Premium seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">25</span>$</div>
+                                        <div>Price: $ <span class="price">25</span></div>
                                     </div>
                                     <button id="searchSeat" class="yellowBorderBtn">
                                         <span class="material-icons i-seat">
                                             airline_seat_recline_normal
                                             </span>
-                                            Find available seat
+                                            Find available seats
                                     </button>
                                 </div>
                                 <div class="seatColumn lastPriceBox">
@@ -448,7 +448,7 @@ function createInfoModal(targetMovie){
                                         <div>Unavailable seats</div>
                                     </div>
                                     <div class="priceBox">
-                                        <div>Price: <span class="price">0</span>$</div>
+                                        <div>Price: $ <span class="price">0</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -543,7 +543,7 @@ function createInfoModal(targetMovie){
                                 </div>
                                 <div class="inputWrapper zipCode">
                                     <input id="zipCode" class="textInput" type="text" maxlength ="7">
-                                    <span class="placeholder">Zip code</span>
+                                    <span class="placeholder">Post code</span>
                                     <span class="topLine"></span>
                                     <span class="rightLine"></span>
                                     <span class="bottomLine"></span>
@@ -617,13 +617,13 @@ function createInfoModal(targetMovie){
                                 <span>Province : </span><span class="confirmText confirmProvince">Britich Columbia</span>
                             </div>
                             <div class="confirmContentBox">
-                                <span>Zip Code : </span><span class="confirmText confirmZipCode">V1Y 2R3</span>
+                                <span>Post code : </span><span class="confirmText confirmZipCode">V1Y 2R3</span>
                             </div>
                             <div class="confirmContentBox">
                                 <span>Payment : </span><span class="confirmText confirmPayment">Credit card</span>
                             </div>
                         </div>
-                        <div class="totalMoney">Sub total <span class="ticketMoney"></span>$ + PST <span class="pst">10%</span> + GST <span class="gst">5%</span><br> Total invoice : <span class="totalInvoice"></span>$</div>
+                        <div class="totalMoney">Sub total <span class="ticketMoney"></span>$ + PST <span class="pst">10%</span> + GST <span class="gst">5%</span><br> Total invoice : $ <span class="totalInvoice"></span></div>
                     </div>
                 </div>
                 <div class="processingButtonBox">
@@ -987,7 +987,7 @@ function functionalBtn(element){
             const subModal = document.createElement('div')
             subModal.innerHTML =`
                 <div class="succeedAlert">
-                    <p>It successfully booked. Please check your email.</p>
+                    <p>successfully booked. Please check your email.</p>
                     <div>
                         <button class="orangeBorderBtn closeModalBtn">Confirm</button>
                     </div>
@@ -1374,11 +1374,11 @@ function findingAvailableSeat(){
                     </div>
                     <div class="seatGradeBox">
                         <div class="gradeBox"></div>
-                        <div class="seatText">Normal seats</div>
+                        <div class="seatText">Regular seats</div>
                         <div class="gradeBox yellow"></div>
                         <div class="seatText">Premium seats</div>
                         <div class="gradeBox red"></div>
-                        <div class="seatText">unavailable seats</div>
+                        <div class="seatText">Unavailable seats</div>
                     </div>
                 </div>
             `
